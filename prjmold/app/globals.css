@@ -1,0 +1,221 @@
+@import "tailwindcss";
+
+:root {
+    --background: #000000;
+    --foreground: #ffffff;
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-bege: #FFCD92;
+    --color-azul: #6EC1E4;
+    --color-preto: #000000;
+    --color-branco: #FFFFFF;
+
+    --font-poppins: 'Poppins', sans-serif;
+    --font-sans: var(--font-poppins);
+}
+
+body {
+    background-color: var(--color-preto);
+    color: var(--color-branco);
+    font-smooth: antialiased;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-bege) transparent;
+}
+
+.noise-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes heroFade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: .6;
+    }
+}
+
+.hero-image {
+    animation: heroFade 8s ease forwards;
+}
+
+/* Esconde o cursor padrão */
+html,
+body,
+a,
+button,
+input,
+textarea,
+select,
+label,
+summary,
+[role="button"] {
+    cursor: none !important;
+}
+
+*:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+body:has(button:focus-visible) .focus-visible {
+    opacity: 0.8 !important;
+}
+
+body:has(input:focus-visible, a:focus-visible) .focus-visible {
+    border: 1px solid var(--color-bege) !important;
+    opacity: 0.8 !important;
+}
+
+
+/* Não esconde em telas touch */
+@media (pointer: coarse) {
+
+    html,
+    body {
+        cursor: auto;
+    }
+
+    .cursor-dot,
+    .cursor-light {
+        display: none;
+    }
+}
+
+/* Halo de luz */
+.cursor-light {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 180px;
+    height: 180px;
+
+    pointer-events: none;
+    z-index: 9998;
+
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background:
+        radial-gradient(circle,
+            rgba(255, 205, 146, .22) 0%,
+            rgba(255, 205, 146, .10) 33%,
+            rgba(255, 205, 146, .04) 66%,
+            transparent 75%);
+
+    filter: blur(15px);
+
+    transition:
+        width .25s ease-in-out,
+        height .25s ease-in-out,
+        opacity .3s ease-in-out,
+        top .5s ease-in-out,
+        left .5s ease-in-out;
+
+    will-change: transform;
+}
+
+/* Ponto central */
+.cursor-dot {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #FFCD92;
+
+    box-shadow:
+        0 0 8px rgba(255, 205, 146, .8),
+        0 0 18px rgba(255, 205, 146, .5),
+        0 0 35px rgba(255, 205, 146, .25);
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+
+    z-index: 9999;
+}
+
+/* Quando passa sobre links e botões */
+body:not(:has(input:hover)) .cursor-light.hover {
+    width: 260px;
+    height: 260px;
+    top: 0;
+    left: 0;
+
+    transition:
+        width .25s ease-in-out,
+        height .25s ease-in-out,
+        opacity .3s ease-in-out,
+        top .5s ease-in-out,
+        left .5s ease-in-out;
+
+    background:
+        radial-gradient(circle,
+            rgba(255, 205, 146, .32) 10%,
+            rgba(255, 205, 146, .14) 40%,
+            rgba(255, 205, 146, .05) 80%,
+            transparent 78%);
+}
+
+.cursor-dot.hover {
+    transform: translate(-50%, -50%) scale(1.6);
+}
+
+::selection {
+    background-color: var(--color-bege);
+    color: var(--color-preto);
+}
+
+::-moz-selection {
+    background-color: var(--color-bege);
+    color: var(--color-preto);
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-bege);
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #f5b875;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(circle 280px at var(--mouse-x) var(--mouse-y),
+            rgba(255, 205, 146, .08),
+            transparent 75%);
+}
