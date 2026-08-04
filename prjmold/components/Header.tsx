@@ -15,11 +15,11 @@ export default function Header() {
                 </a>
 
                 <div className="flex items-center gap-9">
-                    <a className="text-xs uppercase tracking-[2px] text-white/60 transition hover:text-[#FFCD92]" href="/produtos">
+                    <a className="text-xs uppercase tracking-[2px] text-white/60 transition hover:text-[#FFCD92]" href="/products">
                         Produtos
                     </a>
 
-                    <a className="text-xs uppercase tracking-[2px] text-white/60 transition hover:text-[#FFCD92]" href="/sobre">
+                    <a className="text-xs uppercase tracking-[2px] text-white/60 transition hover:text-[#FFCD92]" href="/about">
                         Sobre
                     </a>
 

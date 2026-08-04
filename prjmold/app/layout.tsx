@@ -32,13 +32,13 @@ export default function RootLayout({
         className={`${poppins.variable} h-full antialiased`}
       >
         <body className="min-h-full flex flex-col">
-          <Image
+          {/* <Image
             src="/fundo_hero.jpg"
             alt=""
             fill
             priority
             className="hero-image object-cover"
-          />
+          /> */}
           <CursorLight />
           {children}
           <div className="noise-overlay" aria-hidden="true" />

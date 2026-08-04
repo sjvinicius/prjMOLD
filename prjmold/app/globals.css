@@ -23,6 +23,7 @@ body {
     overflow-x: hidden;
     scrollbar-width: thin;
     scrollbar-color: var(--color-bege) transparent;
+    position: relative;
 }
 
 .noise-overlay {
@@ -46,6 +47,7 @@ body {
 
 .hero-image {
     animation: heroFade 8s ease forwards;
+    z-index: -1;
 }
 
 /* Esconde o cursor padrão */
@@ -218,4 +220,45 @@ body:not(:has(input:hover)) .cursor-light.hover {
         radial-gradient(circle 280px at var(--mouse-x) var(--mouse-y),
             rgba(255, 205, 146, .08),
             transparent 75%);
+}
+
+.bg-layer {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0;
+    animation: crossfadeSequence 20s infinite ease-in-out;
+}
+
+.layer-1 {
+    animation-delay: 0s;
+}
+
+.layer-2 {
+    animation-delay: 5s;
+}
+
+.layer-3 {
+    animation-delay: 10s;
+}
+
+.layer-4 {
+    animation-delay: 15s;
+}
+
+@keyframes crossfadeSequence {
+    0% {
+        opacity: 0;
+    }
+
+    5%,
+    25% {
+        opacity: 1;
+    }
+
+    30%,
+    100% {
+        opacity: 0;
+    }
 }
