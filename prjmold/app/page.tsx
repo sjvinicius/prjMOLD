@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Header from "@/app/components/Header";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -9,8 +9,6 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <Header />
-
       <section className="relative flex h-screen items-center overflow-hidden bg-black/60 px-[8%]">
 
         <div className="relative z-10 max-w-175">

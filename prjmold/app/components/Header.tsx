@@ -2,15 +2,15 @@ import Image from "next/image";
 
 export default function Header() {
     return (
-        <header >
-            <nav className="fixed top-0 z-50 flex w-full items-center justify-between bg-linear-to-b from-black/50 to-transparent px-[8%] py-8">
+        <header className="">
+            <nav className="fixed top-0 z-50 flex w-full items-center justify-between bg-linear-to-b from-black/50 to-transparent px-[8%] py-2">
                 <a href="/">
                     <Image
                         src="/logo_escrita.png"
-                        width={180}
-                        height={90}
+                        width={70}
+                        height={40}
                         alt="Estúdio Mol·D"
-                        className="h-22.5 w-auto transition-transform duration-300 hover:scale-105"
+                        className="w-auto transition-transform duration-300 hover:scale-105"
                     />
                 </a>
 

@@ -2,15 +2,15 @@ import Image from "next/image";
 export default function About() {
 
     return (
-        <section className="relative flex min-h-screen  items-center justify-center overflow-hidden ">
+        <section className="relative flex min-h-screen  items-center justify-center overflow-hidden">
 
-            <Image className="bg-layer layer-1 object-cover" src="/about_1.jpg" fill sizes="100vw" alt="" />
-            <Image className="bg-layer layer-2 object-cover" src="/about_2.jpg" fill sizes="100vw" alt="" />
-            <Image className="bg-layer layer-3 object-cover" src="/about_3.jpg" fill sizes="100vw" alt="" />
-            <Image className="bg-layer layer-4 object-cover" src="/about_4.jpg" fill sizes="100vw" alt="" />
+            <Image className="bg-layer layer-1 object-cover" loading="eager" src="/about_1.jpg" fill sizes="100vw" alt="" />
+            <Image className="bg-layer layer-2 object-cover" loading="eager" src="/about_2.jpg" fill sizes="100vw" alt="" />
+            <Image className="bg-layer layer-3 object-cover" loading="eager" src="/about_3.jpg" fill sizes="100vw" alt="" />
+            <Image className="bg-layer layer-4 object-cover" loading="eager" src="/about_4.jpg" fill sizes="100vw" alt="" />
 
             <div
-                className="relative z-10 mx-auto w-screen h-screen px-[8%] py-24"
+                className="relative z-10 mx-auto w-screen h-screen px-[8%] py-32 bg-black/60"
             >
                 <div className="mb-16 max-w-4xl">
                     <span className="sub-title">O Manifesto</span>

@@ -73,6 +73,6 @@ export const config: ProxyConfig = {
              * - _next/image (image optimization files)
              * - favicon.ico (favicon file)
              */
-        '/((?!api|_next/static|_next/image|favicon.ico|about_.*\\.jpg).*)',
+        '/((?!api|_next/static|_next/image|favicon.ico|about_.*\\.jpg|base_.*\\.png|plant_.*\\.png|logo_.*\\.png).*)',
     ]
 }

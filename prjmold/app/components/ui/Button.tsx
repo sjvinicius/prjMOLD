@@ -19,6 +19,7 @@ export function Button({ children, className, ...props }: ButtonProps) {
                 active:translate-y-0
                 font-bold
                 uppercase
+                text-sm
                 ${className || ''}`}
             {...props}>
             {children}
