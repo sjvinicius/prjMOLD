@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 export default function Header() {
 
     const pathname = usePathname();
@@ -9,10 +10,30 @@ export default function Header() {
     if (pathname === "/signin") {
         return null;
     }
-    
+
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+
+        handleScroll(); // verifica ao carregar
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+
     return (
         <header className="">
-            <nav className="fixed top-0 z-50 flex w-full items-center justify-between bg-linear-to-b from-black/50 to-transparent px-[8%] py-2">
+            <nav
+                className={`fixed top-0 z-50 flex w-full items-center justify-between px-[8%] py-2 transition-all duration-300 
+                    ${scrolled
+                        ? "bg-black/90 backdrop-blur-md shadow-lg"
+                        : "bg-linear-to-b from-black/50 to-transparent"
+                    }`}
+            >
                 <a href="/">
                     <Image
                         src="/logo_escrita.png"
@@ -45,6 +66,6 @@ export default function Header() {
                     />
                 </div>
             </nav>
-        </header>
+        </header >
     );
 }
