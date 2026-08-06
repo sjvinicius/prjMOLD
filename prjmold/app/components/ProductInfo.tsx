@@ -101,12 +101,16 @@ export default function ProductInfo({
 
             </section>
 
-            <Button
-                className="mt-12 tracking-[2px] transition duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(255,205,146,.25)]"
-            >
-                Adicionar ao Carrinho — R$ {total},00
-            </Button>
-
+            <Link href={`/checkout?plant=${plant.id}&base=${base.id}`}>
+                <Button
+                    className="mt-12 tracking-[2px] transition duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(255,205,146,.25)]"
+                >
+                    Comprar Agora — R$ {new Intl.NumberFormat("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                    }).format(total)}
+                </Button>
+            </Link>
         </div>
     );
 }

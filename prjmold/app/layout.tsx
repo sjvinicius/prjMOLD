@@ -41,7 +41,7 @@ export default function RootLayout({
             className="hero-image object-cover"
           />
           <CursorLight />
-          <Header />
+          <Header/>
 
           {children}
           <div className="noise-overlay" aria-hidden="true" />

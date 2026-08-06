@@ -1,11 +1,12 @@
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label: string;
+    error?: string;
 }
 
-export function Input({ label, id, className, ...props }: InputProps) {
+export function Input({ label, id, error, className, ...props }: InputProps) {
     return <div className="text-left">
         <label
-            htmlFor={`${id}`}
+            htmlFor={id}
             className="
                 my-2
                 block
@@ -31,7 +32,7 @@ export function Input({ label, id, className, ...props }: InputProps) {
                 transition-all duration-300
                 placeholder:text-white/30
                 focus:border-[#FFCD92]
-                focus:bg-white/10"
+                focus:bg-white/10
                 block
                 text-[10px]
                 tracking-[2px]
@@ -39,5 +40,10 @@ export function Input({ label, id, className, ...props }: InputProps) {
             }
             {...props}
         />
+        {error && (
+            <p className="mt-1 text-xs text-red-400">
+                {error}
+            </p>
+        )}
     </div>
 }

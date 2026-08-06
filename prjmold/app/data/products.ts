@@ -5,7 +5,7 @@ export const plants: Plant[] = [
         id: 1,
         name: "Monstera",
         image: "/plant_1.png",
-        price: 100,
+        price: 99.99,
         details: [
             {
                 label: "Material",
@@ -21,7 +21,7 @@ export const plants: Plant[] = [
         id: 2,
         name: "Pacová",
         image: "/plant_2.png",
-        price: 120,
+        price: 119.99,
         details: [
             {
                 label: "Material",
@@ -43,7 +43,7 @@ export const bases: Base[] = [
         led: "LED Endereçável (RGBW)",
         connection: "USB-C / Wi-Fi",
         resources: "Integração Smart Home / App",
-        price: 149,
+        price: 149.13,
     },
     {
         id: 2,
@@ -52,6 +52,6 @@ export const bases: Base[] = [
         led: "LED Quente",
         connection: "USB-C",
         resources: "Nenhum (Plug & Play)",
-        price: 89,
+        price: 89.99,
     },
 ];

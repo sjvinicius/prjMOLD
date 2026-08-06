@@ -1,6 +1,15 @@
-import Image from "next/image";
+"use client"
 
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 export default function Header() {
+
+    const pathname = usePathname();
+
+    if (pathname === "/signin") {
+        return null;
+    }
+    
     return (
         <header className="">
             <nav className="fixed top-0 z-50 flex w-full items-center justify-between bg-linear-to-b from-black/50 to-transparent px-[8%] py-2">
