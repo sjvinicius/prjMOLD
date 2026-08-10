@@ -12,7 +12,6 @@ import { ShoppingCart } from "lucide-react";
 import { Base, Plant } from "@/types/product";
 import Link from "next/link";
 
-
 interface HeaderContentProps {
     user: User | null;
     cart: Base[] | Plant[] | null;
@@ -21,11 +20,6 @@ interface HeaderContentProps {
 export default function HeaderContent({ user, cart }: HeaderContentProps) {
 
     const pathname = usePathname();
-
-    if (pathname === "/signin") {
-        return null;
-    }
-
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
@@ -39,9 +33,9 @@ export default function HeaderContent({ user, cart }: HeaderContentProps) {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // const cartCount = user
-    // ? await getCartCount(user.id)
-    // : 0;
+    if (pathname === "/signin") {
+        return null;
+    }
 
     return (<header className="">
         <nav
@@ -89,7 +83,7 @@ export default function HeaderContent({ user, cart }: HeaderContentProps) {
                         <Link href="/cart" className="relative">
                             <ShoppingCart />
 
-                                <span className="
+                            <span className="
                                     absolute -right-3 -bottom-2
                                     flex h-4 min-w-4
                                     items-center justify-center
@@ -100,8 +94,8 @@ export default function HeaderContent({ user, cart }: HeaderContentProps) {
                                     font-semibold
                                     text-black
                                 ">
-                                    {cart?.length || 0}
-                                </span>
+                                {cart?.length || 0}
+                            </span>
                         </Link>
                     )}
                 </div>

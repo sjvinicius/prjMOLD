@@ -52,25 +52,25 @@ export function proxy(request: NextRequest) {
 
     const path = request.nextUrl.pathname
     const publicroute = publicroutes.find(route => path === route.path)
-    const authtoken = request.cookies
+    const authcookie = request.cookies
         .getAll()
         .find(cookie =>
             cookie.name.startsWith("sb-") &&
             cookie.name.endsWith("-auth-token")
         );
 
-    if (!authtoken && publicroute) {
+    if (!authcookie && publicroute) {
         return NextResponse.next()
     }
 
-    if (!authtoken && !publicroute) {
+    if (!authcookie && !publicroute) {
         const redirecturl = request.nextUrl.clone()
         redirecturl.pathname = REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE
 
         return NextResponse.redirect(redirecturl)
     }
 
-    if (authtoken && publicroute && publicroute.whenauthenticated == "redirect") {
+    if (authcookie && publicroute && publicroute.whenauthenticated == "redirect") {
 
         const redirecturl = request.nextUrl.clone()
         redirecturl.pathname = "/"
@@ -78,10 +78,10 @@ export function proxy(request: NextRequest) {
         return NextResponse.redirect(redirecturl)
     }
 
-    if (authtoken && !publicroute) {
-        const token = authtoken.value;
+    if (authcookie && !publicroute) {
+        const token = authcookie.value;
 
-        if (isTokenExpired(token)) {
+        if (!token) {
             const response = NextResponse.redirect(
                 new URL(
                     REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE,
@@ -89,13 +89,23 @@ export function proxy(request: NextRequest) {
                 )
             );
 
-            response.cookies.delete(authtoken.name);
+            response.cookies.delete(authcookie.name);
 
-            const redirecturl = request.nextUrl.clone()
-            redirecturl.pathname = "/signin"
-
-            return NextResponse.redirect(redirecturl)
+            return response
         }
+
+        // if (isTokenExpired(token)) {
+        //     const response = NextResponse.redirect(
+        //         new URL(
+        //             REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE,
+        //             request.url
+        //         )
+        //     );
+
+        //     response.cookies.delete(authcookie.name);
+
+        //     return response
+        // }
     }
 
     return NextResponse.next()
@@ -111,6 +121,6 @@ export const config: ProxyConfig = {
              * - _next/image (image optimization files)
              * - favicon.ico (favicon file)
              */
-        '/((?!api|_next/static|_next/image|favicon.ico|about_.*\\.jpg|base_.*\\.png|plant_.*\\.png|logo_.*\\.png|fundo_.*\\.jpg|checkout|fundo_.*\\.png).*)',
+        '/((?!api|_next/static|_next/image|favicon.ico|about_.*\\.jpg|base_.*\\.png|plant_.*\\.png|logo_.*\\.png|fundo_.*\\.jpg|fundo_.*\\.png).*)',
     ]
 }
