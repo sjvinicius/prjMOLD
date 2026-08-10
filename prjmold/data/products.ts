@@ -2,6 +2,22 @@ import { Base, Plant } from "../types/product";
 
 export const plants: Plant[] = [
     {
+        id: 0,
+        name: "Nenhum",
+        image: "",
+        price: 0,
+        details: [
+            {
+                label: "Material",
+                description: "-"
+            },
+            {
+                label: "Engate",
+                description: "-"
+            },
+        ]
+    },
+    {
         id: 1,
         name: "Monstera",
         image: "/plant_1.png",
@@ -36,6 +52,15 @@ export const plants: Plant[] = [
 ];
 
 export const bases: Base[] = [
+    {
+        id: 0,
+        type: "-",
+        image: "",
+        led: "-",
+        connection: "-",
+        resources: "-",
+        price: 0,
+    },
     {
         id: 1,
         type: "Tech",

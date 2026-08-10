@@ -4,8 +4,8 @@ import "./globals.css";
 
 import Head from "next/head";
 import Image from "next/image";
-import CursorLight from "@/app/components/CursorLight";
-import Header from "./components/Header";
+import CursorLight from "@/components/CursorLight";
+import Header from "../components/Header";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -33,6 +33,7 @@ export default function RootLayout({
         className={`${poppins.variable} h-full antialiased`}
       >
         <body className="min-h-full flex flex-col">
+          <Header />
           <Image
             src="/fundo_hero.jpg"
             alt=""
@@ -41,7 +42,6 @@ export default function RootLayout({
             className="hero-image object-cover"
           />
           <CursorLight />
-          <Header/>
 
           {children}
           <div className="noise-overlay" aria-hidden="true" />

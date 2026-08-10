@@ -1,4 +1,4 @@
-import { Base, Plant } from "@/app/types/product";
+import { Base, Plant } from "@/types/product";
 import Link from "next/link";
 import { Button } from "./ui/Button";
 
@@ -101,14 +101,16 @@ export default function ProductInfo({
 
             </section>
 
-            <Link href={`/checkout?plant=${plant.id}&base=${base.id}`}>
+            <Link href={`/checkout?plant=${plant.id}&base=${base.id}`} className="flex w-full justify-center">
                 <Button
-                    className="mt-12 tracking-[2px] transition duration-300 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(255,205,146,.25)]"
+                    className={`mt-12`}
+                    disabled={!(total > 0)}
+                    isdisabled={!(total > 0)}
                 >
-                    Comprar Agora — R$ {new Intl.NumberFormat("pt-BR", {
+                    {total > 0 ? `Adicionar ao carrinho — R$ ${new Intl.NumberFormat("pt-BR", {
                         style: "currency",
                         currency: "BRL",
-                    }).format(total)}
+                    }).format(total)}` : "Escolha um produto"}
                 </Button>
             </Link>
         </div>

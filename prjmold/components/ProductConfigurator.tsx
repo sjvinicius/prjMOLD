@@ -1,17 +1,17 @@
 "use client";
 
-import { plants, bases } from "@/app/data/products";
+import { plants, bases } from "@/data/products";
 
 import ConfigBlock from "./ConfigBlock";
 import ProductInfo from "./ProductInfo";
-import { useCircularIndex } from "@/app/hooks/useCircularIndex";
+import { useCircularIndex } from "@/hooks/useCircularIndex";
 
 export default function ProductConfigurator() {
     const plant = useCircularIndex(plants);
     const base = useCircularIndex(bases);
 
     return (
-        <section className="relative min-h-screen overflow-hidden bg-black">
+        <section className="relative min-h-screen overflow-hidden">
             <div
                 className="absolute inset-0 scale-110 bg-cover bg-center blur-md"
                 style={{

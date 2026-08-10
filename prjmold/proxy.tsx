@@ -29,11 +29,35 @@ const publicroutes = [
 
 const REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE = '/signin'
 
+function isTokenExpired(token: string): boolean {
+    try {
+        const payload = JSON.parse(
+            Buffer.from(
+                token.split(".")[1],
+                "base64url"
+            ).toString()
+        );
+
+        if (!payload.exp) {
+            return true;
+        }
+
+        return payload.exp * 1000 <= Date.now();
+    } catch {
+        return true;
+    }
+}
+
 export function proxy(request: NextRequest) {
 
     const path = request.nextUrl.pathname
     const publicroute = publicroutes.find(route => path === route.path)
-    const authtoken = request.cookies.get("mold@accesstoken")
+    const authtoken = request.cookies
+        .getAll()
+        .find(cookie =>
+            cookie.name.startsWith("sb-") &&
+            cookie.name.endsWith("-auth-token")
+        );
 
     if (!authtoken && publicroute) {
         return NextResponse.next()
@@ -55,9 +79,23 @@ export function proxy(request: NextRequest) {
     }
 
     if (authtoken && !publicroute) {
+        const token = authtoken.value;
 
-        // Checar Expiração
-        // Remover Cookie e redirecionar pra login
+        if (isTokenExpired(token)) {
+            const response = NextResponse.redirect(
+                new URL(
+                    REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE,
+                    request.url
+                )
+            );
+
+            response.cookies.delete(authtoken.name);
+
+            const redirecturl = request.nextUrl.clone()
+            redirecturl.pathname = "/signin"
+
+            return NextResponse.redirect(redirecturl)
+        }
     }
 
     return NextResponse.next()
@@ -73,6 +111,6 @@ export const config: ProxyConfig = {
              * - _next/image (image optimization files)
              * - favicon.ico (favicon file)
              */
-        '/((?!api|_next/static|_next/image|favicon.ico|about_.*\\.jpg|base_.*\\.png|plant_.*\\.png|logo_.*\\.png|checkout).*)',
+        '/((?!api|_next/static|_next/image|favicon.ico|about_.*\\.jpg|base_.*\\.png|plant_.*\\.png|logo_.*\\.png|fundo_.*\\.jpg|checkout|fundo_.*\\.png).*)',
     ]
 }

@@ -1,8 +1,8 @@
-import ProductConfigurator from "@/app/components/ProductConfigurator";
+import ProductConfigurator from "@/components/ProductConfigurator";
 
 export default function ProductPage() {
     return (
-        <main className="min-h-screen bg-black text-white">
+        <main className="min-h-screen text-white">
             <ProductConfigurator />
         </main>
     );

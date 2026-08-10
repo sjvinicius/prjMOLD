@@ -1,8 +1,8 @@
 "use client";
 
-import CheckoutForm from "@/app/components/CheckoutForm";
-import CheckoutSummary from "@/app/components/CheckoutSummary";
-import { plants, bases } from "@/app/data/products";
+import CheckoutForm from "@/components/CheckoutForm";
+import CheckoutSummary from "@/components/CheckoutSummary";
+import { plants, bases } from "@/data/products";
 
 export default function CheckoutPage() {
     // Depois vamos substituir isso pelo estado/global store
