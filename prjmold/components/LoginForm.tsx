@@ -7,9 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { LoginFormData, loginSchema } from "@/utils/validations/auth";
 import { login } from "@/actions/auth";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { redirect } from "next/navigation";
-
+import HCaptcha from "@hcaptcha/react-hcaptcha";
+import HCaptchaHandle from "@hcaptcha/react-hcaptcha";
 
 export default function LoginForm() {
 
@@ -22,10 +23,23 @@ export default function LoginForm() {
     })
 
     const [errorauth, setErrorAuth] = useState<string | null>(null)
+    const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+    const captcha = useRef<HCaptchaHandle>(null);
 
     const loginSubmit = async (data: LoginFormData) => {
         setErrorAuth(null)
-        const result = await login(data);
+
+        if (!captchaToken) {
+            setErrorAuth("Confirme o captcha.");
+            return;
+        }
+
+        const result = await login(
+            data,
+            captchaToken
+        );
+
+        captcha.current?.resetCaptcha()
 
         if (result.error) {
             setErrorAuth(result.error)
@@ -89,7 +103,7 @@ export default function LoginForm() {
                     projetos autorais.
                 </p>
 
-                <form className="w-full"
+                <form className="w-full flex flex-col gap-5 justify-center items-center"
                     onSubmit={handleSubmit(loginSubmit)}>
 
                     <Input
@@ -112,17 +126,25 @@ export default function LoginForm() {
                         error={errors.password?.message}
                     />
 
-                    {errorauth && <span className="mt-3 text-xs text-red-500">{errorauth}</span>}
+                    <span className="text-xs text-red-500">{errorauth}</span>
 
                     <Button
                         type="submit"
                         className="
-                                mt-5
                                 w-full
                                 text-[11px]"
                     >
                         Entrar
                     </Button>
+
+                    <HCaptcha
+                        ref={captcha}
+                        sitekey="a8ea6550-2ede-4b78-8492-03be66a2b062"
+                        theme="dark"
+                        onVerify={(token) => setCaptchaToken(token)}
+                        onExpire={() => setCaptchaToken(null)}
+                        onError={() => setCaptchaToken(null)}
+                    />
 
                     {/* Footer */}
                     <div

@@ -5,7 +5,7 @@ interface InputProps
 }
 
 export function Input({ label, id, error, className, ...props }: InputProps) {
-    return <div className="text-left">
+    return <div className="text-left w-full">
         <label
             htmlFor={id}
             className="

@@ -57,18 +57,18 @@ export default function HeaderContent({ user, cart }: HeaderContentProps) {
             </a>
 
             <div className="flex items-center gap-9">
-                <a className="text-xs uppercase tracking-[2px] text-white/60 transition hover:text-[#FFCD92]" href="/products">
+                <Link className="text-xs uppercase tracking-[2px] text-white/60 transition hover:text-[#FFCD92]" href="/products">
                     Produtos
-                </a>
+                </Link>
 
-                <a className="text-xs uppercase tracking-[2px] text-white/60 transition hover:text-[#FFCD92]" href="/about">
+                <Link className="text-xs uppercase tracking-[2px] text-white/60 transition hover:text-[#FFCD92]" href="/about">
                     Sobre
-                </a>
+                </Link>
 
                 {!user && (
-                    <a className="text-xs uppercase tracking-[2px] text-white/60 transition hover:text-[#FFCD92]" href="/signin">
+                    <Link className="text-xs uppercase tracking-[2px] text-white/60 transition hover:text-[#FFCD92]" href="/signin">
                         Entrar
-                    </a>
+                    </Link>
                 )}
 
                 <div className="ml-12 flex items-center justify-center">

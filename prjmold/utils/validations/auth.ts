@@ -6,7 +6,7 @@ export const loginSchema = z.object({
     password: z
         .string()
         .min(1, "senha inválida.")
-        .min(6, "senha inválida."),
+        .max(32, "senha inválida."),
 });
 
 export type LoginFormData = z.infer<typeof loginSchema>;
