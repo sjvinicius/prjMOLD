@@ -6,6 +6,11 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
 export const createClient = () => {
   return createBrowserClient(
     supabaseUrl,
-    supabaseKey
+    supabaseKey,
+    {
+      db: {
+        schema: "scmold",
+      },
+    }
   );
 };

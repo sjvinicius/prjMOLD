@@ -1,20 +1,15 @@
-export interface Plant {
-    id: number;
+export interface ProductDetail {
+    label: string;
+    description: string;
+}
+
+export type ProductType = "plant" | "base";
+
+export interface Product {
+    id: string;
     name: string;
     image: string;
     price: number;
-    details?: {
-        label: string;
-        description: string;
-    }[];
-}
-
-export interface Base {
-    id: number;
-    type: string;
-    image: string;
-    led: string;
-    connection: string;
-    resources: string;
-    price: number;
+    type: ProductType;
+    details: ProductDetail[];
 }

@@ -1,12 +1,18 @@
 "use client";
 
-import { plants, bases } from "@/data/products";
+// import { plants, bases } from "@/data/products";
 
+import { useCircularIndex } from "@/hooks/useCircularIndex";
 import ConfigBlock from "./ConfigBlock";
 import ProductInfo from "./ProductInfo";
-import { useCircularIndex } from "@/hooks/useCircularIndex";
+import { Product } from "@/types/product";
 
-export default function ProductConfigurator() {
+interface ProductConfigurator {
+    plants: Product[],
+    bases: Product[]
+}
+
+export default function ProductConfigurator({ plants, bases }: ProductConfigurator) {
     const plant = useCircularIndex(plants);
     const base = useCircularIndex(bases);
 
@@ -36,7 +42,7 @@ export default function ProductConfigurator() {
                         <ConfigBlock
                             title="Base Tecnológica"
                             image={base.current.image}
-                            alt={base.current.type}
+                            alt={base.current.name}
                             onPrevious={base.previous}
                             onNext={base.next}
                         />

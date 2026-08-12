@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { Base, Plant } from "../types/product";
+import { Product } from "../types/product";
 import { Button } from "./ui/Button";
 
 type CheckoutSummaryProps = {
-    plant: Plant;
-    base: Base;
+    plant: Product;
+    base: Product;
 };
 
 export default function CheckoutSummary({

@@ -29,24 +29,24 @@ const publicroutes = [
 
 const REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE = '/signin'
 
-function isTokenExpired(token: string): boolean {
-    try {
-        const payload = JSON.parse(
-            Buffer.from(
-                token.split(".")[1],
-                "base64url"
-            ).toString()
-        );
+// function isTokenExpired(token: string): boolean {
+//     try {
+//         const payload = JSON.parse(
+//             Buffer.from(
+//                 token.split(".")[1],
+//                 "base64url"
+//             ).toString()
+//         );
 
-        if (!payload.exp) {
-            return true;
-        }
+//         if (!payload.exp) {
+//             return true;
+//         }
 
-        return payload.exp * 1000 <= Date.now();
-    } catch {
-        return true;
-    }
-}
+//         return payload.exp * 1000 <= Date.now();
+//     } catch {
+//         return true;
+//     }
+// }
 
 export function proxy(request: NextRequest) {
 

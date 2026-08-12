@@ -1,10 +1,10 @@
-import { Base, Plant } from "@/types/product";
+import { Product } from "@/types/product";
 import Link from "next/link";
 import { Button } from "./ui/Button";
 
 interface ProductInfoProps {
-    plant: Plant;
-    base: Base;
+    plant: Product;
+    base: Product;
 }
 
 export default function ProductInfo({
@@ -65,37 +65,21 @@ export default function ProductInfo({
 
                 <div className="grid grid-cols-2 gap-6">
 
-                    <div>
-                        <small className="mb-1 block text-[10px] uppercase tracking-[2px] text-white/40">
-                            Iluminação
-                        </small>
+                    {
+                        base.details?.map((detail, index) => {
+                            return (
+                                <div key={index}>
+                                    <small className="mb-1 block text-[10px] uppercase tracking-[2px] text-white/40">
+                                        {detail.label}
+                                    </small>
 
-                        <p className="text-sm text-white">
-                            {base.led}
-                        </p>
-                    </div>
-
-                    <div>
-                        <small className="mb-1 block text-[10px] uppercase tracking-[2px] text-white/40">
-                            Conexão
-                        </small>
-
-                        <p className="text-sm text-white">
-                            {base.connection}
-                        </p>
-                    </div>
-
-                    <div className="col-span-2">
-
-                        <small className="mb-1 block text-[10px] uppercase tracking-[2px] text-white/40">
-                            Recursos
-                        </small>
-
-                        <p className="text-sm italic text-white/70">
-                            {base.resources}
-                        </p>
-
-                    </div>
+                                    <p className="text-sm text-white">
+                                        {detail.description}
+                                    </p>
+                                </div>
+                            )
+                        })
+                    }
 
                 </div>
 

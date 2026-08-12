@@ -11,6 +11,9 @@ export async function createClient() {
         supabaseUrl,
         supabaseKey,
         {
+            db: {
+                schema: "scmold",
+            },
             cookies: {
                 getAll() {
                     return cookieStore.getAll();

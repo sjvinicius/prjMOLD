@@ -9,12 +9,13 @@ import type { User } from "@supabase/supabase-js";
 
 import { ShoppingCart } from "lucide-react";
 
-import { Base, Plant } from "@/types/product";
+import { Product } from "@/types/product";
 import Link from "next/link";
+import { Button } from "./Button";
 
 interface HeaderContentProps {
     user: User | null;
-    cart: Base[] | Plant[] | null;
+    cart: Product[] | null;
 }
 
 export default function HeaderContent({ user, cart }: HeaderContentProps) {
@@ -70,6 +71,10 @@ export default function HeaderContent({ user, cart }: HeaderContentProps) {
                         Entrar
                     </Link>
                 )}
+
+                {user && <Button className="text-xs py-1 opacity-70">
+                    Sair
+                </Button>}
 
                 <div className="ml-12 flex items-center justify-center">
                     <Image

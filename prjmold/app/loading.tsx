@@ -2,12 +2,14 @@ import Image from "next/image";
 
 export default function Loading() {
     return (
-        <main className=" fixed inset-0 z-[9999]
+        <main className="fixed 
+            inset-0 
+            z-999999999
             flex
             flex-col
             bg-black/90
             transition-opacity
-            duration-700
+            duration-1200
             ease-out
             opacity-100
             items-center 

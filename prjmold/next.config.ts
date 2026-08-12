@@ -9,6 +9,14 @@ const nextConfig: NextConfig = {
         "*.app.github.dev",
       ],
     },
+  }, images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lhbbwnkwjaeliczswbhh.supabase.co",
+        pathname: "/storage/v1/object/public/**",
+      },
+    ],
   },
 };
 

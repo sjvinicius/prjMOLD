@@ -1,11 +1,13 @@
-import { Base, Plant } from "../types/product";
+import { Product } from "@/types/product";
 
-export const plants: Plant[] = [
+
+export const plants: Product[] = [
     {
-        id: 0,
+        id: "0",
         name: "Nenhum",
         image: "",
         price: 0,
+        type: "plant",
         details: [
             {
                 label: "Material",
@@ -18,10 +20,11 @@ export const plants: Plant[] = [
         ]
     },
     {
-        id: 1,
+        id: "1",
         name: "Monstera",
         image: "/plant_1.png",
         price: 99.99,
+        type: "plant",
         details: [
             {
                 label: "Material",
@@ -34,10 +37,11 @@ export const plants: Plant[] = [
         ]
     },
     {
-        id: 2,
+        id: "2",
         name: "Pacová",
         image: "/plant_2.png",
         price: 119.99,
+        type: "plant",
         details: [
             {
                 label: "Material",
@@ -51,32 +55,68 @@ export const plants: Plant[] = [
     },
 ];
 
-export const bases: Base[] = [
+export const bases: Product[] = [
     {
-        id: 0,
-        type: "-",
+        id: "0",
+        name: "",
         image: "",
-        led: "-",
-        connection: "-",
-        resources: "-",
         price: 0,
+        type: "base",
+        details: [
+            {
+                label: "tipo",
+                description: "-"
+            }
+        ]
     },
     {
-        id: 1,
-        type: "Tech",
+        id: "1",
+        name: "Base Tech",
         image: "/base_tech.png",
-        led: "LED Endereçável (RGBW)",
-        connection: "USB-C / Wi-Fi",
-        resources: "Integração Smart Home / App",
         price: 149.13,
+        type: "base",
+        details: [
+            {
+                label: "tipo",
+                description: "Tech"
+            },
+            {
+                label: "led",
+                description: "LED Endereçável (RGBW)"
+            },
+            {
+                label: "connection",
+                description: "USB-C / Wi-Fi"
+            },
+            {
+                label: "resources",
+                description: "Integração Smart Home / Ap"
+            },
+        ]
     },
     {
-        id: 2,
-        type: "Classic",
+        id: "2",
+        name: "Base Simples",
         image: "/base_simples.png",
-        led: "LED Quente",
-        connection: "USB-C",
-        resources: "Nenhum (Plug & Play)",
         price: 89.99,
+        type: "base",
+        details: [
+            {
+                label: "tipo",
+                description: "Classic"
+            },
+            {
+                label: "led",
+                description: "LED Quente"
+            },
+            {
+                label: "connection",
+                description: "USB-C"
+            },
+            {
+                label: "resources",
+                description: "Nenhum (Plug & Play)"
+            },
+        ]
     },
 ];
