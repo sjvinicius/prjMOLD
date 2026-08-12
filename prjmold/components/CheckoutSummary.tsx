@@ -16,7 +16,7 @@ export default function CheckoutSummary({
 
     return (
         <aside className="flex flex-col gap-8">
-            <div className="rounded-[20px] border border-[#FFCD921A] bg-white/[0.03] p-8 backdrop-blur-xl">
+            <div className="rounded-[20px] border border-[#FFCD921A] bg-white/3 p-8 backdrop-blur-xl">
 
                 <small className="mb-6 block text-[10px] uppercase tracking-[2px] text-[#FFCD92]/70">
                     Seu Setup

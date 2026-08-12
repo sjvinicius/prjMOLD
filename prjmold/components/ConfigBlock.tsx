@@ -72,8 +72,8 @@ export default function ConfigBlock({
                     width={300}
                     height={300}
                     onLoad={finishLoading}
-                    className="h-[260px] w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,.6)]"
-                /> : <div className="mt-5 flex h-[260px] w-full items-center justify-center rounded-lg border border-white/10 bg-white/5 text-sm text-white/40">
+                    className="h-65 w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,.6)]"
+                /> : <div className="mt-5 flex h-65 w-full items-center justify-center rounded-lg border border-white/10 bg-white/5 text-sm text-white/40">
                     Nenhum produto selecionado
                 </div>}
 
