@@ -1,3 +1,4 @@
+import { CartProvider } from "@/context/CartContext";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -15,6 +16,7 @@ export default async function PrivateLayout({
     if (!user) {
         redirect("/signin");
     }
+
 
     return (
         <>

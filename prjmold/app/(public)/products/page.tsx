@@ -4,11 +4,6 @@ import { Suspense } from "react";
 
 export default async function ProductPage() {
 
-    const [plants, bases] = await Promise.all([
-        getProductsByType("plant"),
-        getProductsByType("base"),
-    ]);
-
     return (
         <main className="min-h-screen text-white">
             <Suspense fallback={<ProductConfiguratorSkeleton />}>

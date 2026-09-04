@@ -28,14 +28,14 @@ export default function Home() {
 
           <div className="flex gap-5">
             <a
-              href="/produtos"
+              href="/products"
               className="border border-[#FFCD92]/40 px-8 py-3 text-xs uppercase tracking-[2px] text-[#FFCD92] transition hover:bg-[#FFCD92] hover:text-black"
             >
               Ver Peças
             </a>
 
             <a
-              href="/sobre"
+              href="/about"
               className="border border-white/20 px-8 py-3 text-xs uppercase tracking-[2px] text-white transition hover:border-[#FFCD92] hover:bg-[#FFCD92] hover:text-black"
             >
               Manifesto

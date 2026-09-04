@@ -6,6 +6,7 @@ import Head from "next/head";
 import Image from "next/image";
 import CursorLight from "@/components/CursorLight";
 import Header from "../components/Header";
+import { CartProvider } from "@/context/CartContext";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -33,17 +34,20 @@ export default function RootLayout({
         className={`${poppins.variable} h-full antialiased`}
       >
         <body className="min-h-full flex flex-col">
-          <Header />
-          <Image
-            src="/fundo_hero.jpg"
-            alt=""
-            fill
-            priority
-            className="hero-image object-cover"
-          />
-          <CursorLight />
+          <CartProvider>
+            <Header />
+            <Image
+              src="/fundo_hero.jpg"
+              alt=""
+              fill
+              priority
+              className="hero-image object-cover"
+            />
+            <CursorLight />
 
-          {children}
+
+            {children}
+          </CartProvider>
           <div className="noise-overlay" aria-hidden="true" />
         </body>
       </html>

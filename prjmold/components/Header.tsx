@@ -10,6 +10,6 @@ export default async function Header() {
     } = await supabase.auth.getUser();
 
     return <>
-        <HeaderContent user={user} cart={null} />
+        <HeaderContent user={user} />
     </>    
 }
