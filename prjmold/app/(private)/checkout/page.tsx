@@ -2,13 +2,12 @@
 
 import CheckoutForm from "@/components/CheckoutForm";
 import CheckoutSummary from "@/components/CheckoutSummary";
-import { plants, bases } from "@/data/products";
+import { useCart } from "@/context/CartContext";
 
 export default function CheckoutPage() {
-    // Depois vamos substituir isso pelo estado/global store
-    const plant = plants[0];
-    const base = bases[0];
 
+    const { items } = useCart();
+    
     return (
         <section className="relative flex min-h-screen items-center justify-center overflow-hidden py-24">
             <div
@@ -24,8 +23,7 @@ export default function CheckoutPage() {
                     <CheckoutForm />
 
                     <CheckoutSummary
-                        plant={plant}
-                        base={base}
+                        items={items}
                     />
                 </div>
             </div>
