@@ -13,7 +13,7 @@ export default function CardPreview({
 }: CardPreviewProps) {
     return (
         <div className="flex w-full justify-center animate-in fade-in slide-in-from-right-5 duration-500">
-            <div className="relative flex h-[200px] w-full max-w-[340px] flex-col justify-between overflow-hidden rounded-[20px] border border-[#FFCD9233] bg-white/5 p-6 shadow-[0_30px_60px_rgba(0,0,0,.5)] backdrop-blur-xl">
+            <div className="relative flex h-50 w-full max-w-85 flex-col justify-between overflow-hidden rounded-[20px] border border-[#FFCD9233] bg-white/5 p-6 shadow-[0_30px_60px_rgba(0,0,0,.5)] backdrop-blur-xl">
 
                 {/* brilho */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,.06),transparent_70%)] pointer-events-none" />

@@ -1,10 +1,11 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import type { User } from "@supabase/supabase-js";
-import { ShoppingCart, X } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "./Button";
@@ -24,13 +25,18 @@ export default function HeaderContent({
     const pathname = usePathname();
     const router = useRouter();
 
-    const { count } = useCart();
+    const { count, items } = useCart();
 
     const [scrolled, setScrolled] = useState(false);
     const [cartOpen, setCartOpen] = useState(false);
+    const [pulse, setPulse] = useState(false);
+
+    const cartQuantity = items.reduce(
+        (total, item) => total + item.quantity,
+        0
+    );
 
     useEffect(() => {
-
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
         };
@@ -42,21 +48,7 @@ export default function HeaderContent({
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-
     }, []);
-
-    if (pathname === "/signin") {
-        return null;
-    }
-
-    const { items } = useCart();
-
-    const cartQuantity = items.reduce(
-        (total, item) => total + item.quantity,
-        0
-    );
-
-    const [pulse, setPulse] = useState(false);
 
     useEffect(() => {
         if (cartQuantity === 0) return;
@@ -69,6 +61,10 @@ export default function HeaderContent({
 
         return () => clearTimeout(timer);
     }, [cartQuantity]);
+
+    if (pathname === "/signin") {
+        return null;
+    }
 
     const supabase = createClient();
 
@@ -92,8 +88,10 @@ export default function HeaderContent({
                 className={`
                     fixed top-0 z-50
                     flex w-full items-center justify-between
-                    px-[8%] py-2
+                    px-5 sm:px-8 md:px-[8%]
+                    py-3 sm:py-2
                     transition-all duration-300
+
                     ${scrolled
                         ? "bg-black/90 backdrop-blur-md shadow-lg"
                         : "bg-linear-to-b from-black/50 to-transparent"
@@ -103,31 +101,45 @@ export default function HeaderContent({
 
                 {/* Logo */}
 
-                <Link href="/">
+                <Link href="/" className="shrink-0">
+
                     <Image
                         src="/logo_escrita.png"
-                        width={70}
-                        height={40}
+                        width={120}
+                        height={50}
                         loading="eager"
                         alt="Estúdio Mol·D"
                         className="
-                            w-auto
+                            h-auto
+                            w-15
+                            sm:w-28.75
+                            md:w-17.5
                             transition-transform
                             duration-300
                             hover:scale-105
                         "
                     />
+
                 </Link>
 
 
                 {/* Navegação */}
 
-                <div className="flex items-center gap-9">
+                <div className="
+                    flex
+                    items-center
+                    gap-4
+                    sm:gap-6
+                    md:gap-9
+                ">
 
                     <Link
                         className="
-                            text-xs uppercase
-                            tracking-[2px]
+                            text-[10px]
+                            sm:text-xs
+                            uppercase
+                            tracking-[1.5px]
+                            sm:tracking-[2px]
                             text-white/60
                             transition
                             hover:text-[#FFCD92]
@@ -139,8 +151,11 @@ export default function HeaderContent({
 
                     <Link
                         className="
-                            text-xs uppercase
-                            tracking-[2px]
+                            text-[10px]
+                            sm:text-xs
+                            uppercase
+                            tracking-[1.5px]
+                            sm:tracking-[2px]
                             text-white/60
                             transition
                             hover:text-[#FFCD92]
@@ -156,8 +171,11 @@ export default function HeaderContent({
                     {!user && (
                         <Link
                             className="
-                                text-xs uppercase
-                                tracking-[2px]
+                                text-[10px]
+                                sm:text-xs
+                                uppercase
+                                tracking-[1.5px]
+                                sm:tracking-[2px]
                                 text-white/60
                                 transition
                                 hover:text-[#FFCD92]
@@ -174,7 +192,13 @@ export default function HeaderContent({
                     {user && (
                         <Button
                             onClick={handleLogout}
-                            className="text-xs py-1 opacity-70"
+                            className="
+                                px-0
+                                py-1
+                                text-[10px]
+                                sm:text-xs
+                                opacity-70
+                            "
                         >
                             Sair
                         </Button>
@@ -183,15 +207,30 @@ export default function HeaderContent({
 
                     {/* Símbolo + Carrinho */}
 
-                    <div className="ml-12 flex items-center justify-center gap-5">
+                    <div className="
+                        ml-1
+                        sm:ml-4
+                        md:ml-12
+                        flex
+                        items-center
+                        justify-center
+                        sm:gap-2
+                        md:gap-5
+                        pr-7 
+                        sm:pr-0
+                        md:pr-0
+                    ">
 
                         <Image
                             src="/logo_simbolo.png"
-                            width={100}
-                            height={100}
+                            width={120}
+                            height={120}
                             alt="Símbolo"
                             className="
                                 h-auto
+                                w-20
+                                sm:w-13.75
+                                md:w-20
                                 transition
                                 duration-300
                                 hover:rotate-90
@@ -213,6 +252,7 @@ export default function HeaderContent({
                                     hover:text-[#FFCD92]
                                 "
                             >
+
                                 <ShoppingCart
                                     size={22}
                                     strokeWidth={1.7}
@@ -220,13 +260,16 @@ export default function HeaderContent({
 
                                 <motion.span
                                     animate={{
-                                        scale: pulse ? [1, 1.5, 1] : 1,
+                                        scale: pulse
+                                            ? [1, 1.5, 1]
+                                            : 1,
                                     }}
                                     transition={{
                                         duration: 0.35,
                                         ease: "easeOut",
                                     }}
                                 >
+
                                     {count > 0 && (
                                         <span
                                             className="
@@ -249,8 +292,8 @@ export default function HeaderContent({
                                             {count}
                                         </span>
                                     )}
-                                </motion.span>
 
+                                </motion.span>
 
                             </button>
                         )}
@@ -263,6 +306,7 @@ export default function HeaderContent({
 
 
             {/* Carrinho */}
+
             {user && (
                 <CartSidebar
                     open={cartOpen}
