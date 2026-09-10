@@ -1,4 +1,4 @@
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/utils/supabase/service";
 import { NextRequest, NextResponse } from "next/server";
 
 const INFINITEPAY_PAYMENT_CHECK =
@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const supabase = await createClient();
+        const supabase = await createClient;
 
         /*
          * Localiza o pedido pelo order_nsu.
@@ -81,8 +81,9 @@ export async function POST(request: NextRequest) {
                     `
                 )
                 .eq("order_nsu", order_nsu)
-                .single();
+                .maybeSingle();
 
+        console.log(order)
         if (orderError || !order) {
             console.error(
                 "Pedido não encontrado:",
@@ -139,6 +140,7 @@ export async function POST(request: NextRequest) {
         const paymentCheck =
             await paymentCheckResponse.json();
 
+        console.log(paymentCheck)
         /*
          * Se a própria InfinitePay não confirmou
          * o pagamento, não alteramos o pedido.
