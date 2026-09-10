@@ -77,13 +77,12 @@ export async function POST(request: NextRequest) {
                         order_nsu,
                         total,
                         payment_status,
-                        status
+                        statusorder
                     `
                 )
                 .eq("order_nsu", order_nsu)
                 .maybeSingle();
 
-        console.log(order)
         if (orderError || !order) {
             console.error(
                 "Pedido não encontrado:",
@@ -140,7 +139,6 @@ export async function POST(request: NextRequest) {
         const paymentCheck =
             await paymentCheckResponse.json();
 
-        console.log(paymentCheck)
         /*
          * Se a própria InfinitePay não confirmou
          * o pagamento, não alteramos o pedido.
@@ -238,44 +236,34 @@ export async function POST(request: NextRequest) {
          */
         const now = new Date().toISOString();
 
-        const { error: updateError } =
+        const { data: updatedOrder, error: updateError } =
             await supabase
                 .schema("scmold")
                 .from("order")
                 .update({
                     payment_status: "PAID",
-
-                    status: "PROCESSING",
-
-                    infinitepay_invoice_slug:
-                        invoice_slug,
-
-                    infinitepay_transaction_nsu:
-                        transaction_nsu,
-
-                    infinitepay_receipt_url:
-                        receipt_url ?? null,
-
+                    statusorder: "PREPARING",
+                    infinitepay_invoice_slug: invoice_slug,
+                    infinitepay_transaction_nsu: transaction_nsu,
+                    infinitepay_receipt_url: receipt_url ?? null,
                     infinitepay_capture_method:
                         capture_method ??
                         paymentCheck.capture_method ??
                         null,
-
                     infinitepay_installments:
                         installments ??
                         paymentCheck.installments ??
                         null,
-
-                    paid_amount:
-                        paidAmountInCents / 100,
-
+                    paid_amount: paidAmountInCents / 100,
                     paid_at: now,
-
                     altered_at: now,
                     altered_by: "INFINITEPAY_WEBHOOK",
                 })
                 .eq("order_id", order.order_id)
-                .eq("payment_status", "PENDING");
+                .eq("order_nsu", order_nsu)
+                .eq("payment_status", "PENDING")
+                .select("order_id, payment_status, statusorder")
+                .maybeSingle();
 
         if (updateError) {
             console.error(
@@ -286,11 +274,18 @@ export async function POST(request: NextRequest) {
             return NextResponse.json(
                 {
                     success: false,
-                    message:
-                        "Não foi possível atualizar o pedido.",
+                    message: "Não foi possível atualizar o pedido.",
                 },
                 { status: 400 }
             );
+        }
+
+        if (!updatedOrder) {
+
+            return NextResponse.json({
+                success: true,
+                message: "Pagamento já processado.",
+            });
         }
 
         /*
