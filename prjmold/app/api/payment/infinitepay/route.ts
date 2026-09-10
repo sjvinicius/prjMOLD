@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 const INFINITEPAY_API =
     "https://api.checkout.infinitepay.io/links";
 
-const SHIPPING = 25;
+const SHIPPING = 0.99;
 
 export async function POST(request: NextRequest) {
     try {

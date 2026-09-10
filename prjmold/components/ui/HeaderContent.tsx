@@ -188,20 +188,37 @@ export default function HeaderContent({
 
 
                     {/* Logout */}
-
                     {user && (
-                        <Button
-                            onClick={handleLogout}
-                            className="
-                                px-0
-                                py-1
-                                text-[10px]
-                                sm:text-xs
-                                opacity-70
-                            "
-                        >
-                            Sair
-                        </Button>
+                        <>
+                            <Link
+                                className="
+                                    text-[10px]
+                                    sm:text-xs
+                                    uppercase
+                                    tracking-[1.5px]
+                                    sm:tracking-[2px]
+                                    text-white/60
+                                    transition
+                                    hover:text-[#FFCD92]
+                                "
+                                href="/orders"
+                            >
+                                Meus Pedidos
+                            </Link>
+                            <Button
+                                onClick={handleLogout}
+                                className="
+                                    px-0
+                                    py-1
+                                    text-[10px]
+                                    sm:text-xs
+                                    opacity-70
+                                "
+                            >
+                                Sair
+                            </Button>
+                        </>
+
                     )}
 
 
