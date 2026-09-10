@@ -93,7 +93,7 @@ export function CartProvider({
         base: Product
     ) {
 
-        const id = `${plant.id}-${base.id}`;
+        const id = `${plant.id}::${base.id}`;
 
         setItems(current => {
 

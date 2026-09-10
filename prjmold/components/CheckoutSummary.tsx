@@ -3,23 +3,31 @@
 import Link from "next/link";
 import { CartItem, useCart } from "@/context/CartContext";
 import { Button } from "./ui/Button";
-import { Trash2, Minus, Plus } from "lucide-react";
+import { Minus, Plus, Trash2 } from "lucide-react";
 
 type CheckoutSummaryProps = {
     items: CartItem[];
+    loading: boolean;
+    error: string | null;
 };
 
 export default function CheckoutSummary({
     items,
+    loading,
+    error,
 }: CheckoutSummaryProps) {
-    const { updateQuantity, removeItem } = useCart();
+    const {
+        updateQuantity,
+        removeItem,
+    } = useCart();
 
     const shipping = items.length > 0 ? 25 : 0;
 
     const subtotal = items.reduce(
         (sum, item) =>
             sum +
-            (item.plant.price + item.base.price) * item.quantity,
+            (item.plant.price + item.base.price) *
+            item.quantity,
         0
     );
 
@@ -29,206 +37,149 @@ export default function CheckoutSummary({
         price.toFixed(2).replace(".", ",");
 
     return (
-        <aside className="flex flex-col gap-6 sm:gap-8">
-            <div className="rounded-2xl border border-[#FFCD921A] bg-white/3 p-5 backdrop-blur-xl sm:rounded-[20px] sm:p-8">
+        <div className="min-w-0">
 
-                <small className="mb-5 block text-[10px] uppercase tracking-[2px] text-[#FFCD92]/70 sm:mb-6">
-                    Seu Setup
-                </small>
+            <h2 className="mt-2 mb-6 text-3xl sm:mb-8 sm:text-4xl">
+                Seu Pedido
+            </h2>
 
-                {items.length === 0 ? (
-                    <div className="py-8 text-center">
-                        <p className="text-sm text-white/60">
-                            Seu carrinho está vazio.
-                        </p>
+            {items.length === 0 ? (
+                <div className="flex flex-col items-center justify-center rounded-xl border border-white/10 bg-white/5 p-8 text-center">
+                    <p className="text-sm text-white/60">
+                        Seu carrinho está vazio.
+                    </p>
 
-                        <Link
-                            href="/products"
-                            className="mt-4 inline-block text-xs uppercase tracking-[2px] text-[#FFCD92] transition hover:opacity-70"
-                        >
-                            Escolher produtos
-                        </Link>
-                    </div>
-                ) : (
-                    <>
-                        <div className="flex flex-col gap-6 max-h-[70vh] overflow-y-auto pr-3">
-                            {items.map((item) => {
-                                const itemTotal =
-                                    (item.plant.price + item.base.price) *
-                                    item.quantity;
+                    <Link
+                        href="/products"
+                        className="mt-4 text-sm text-[#FFCD92] transition-opacity hover:opacity-70"
+                    >
+                        Voltar para produtos
+                    </Link>
+                </div>
+            ) : (
+                <div className="flex flex-col gap-5">
+                    {items.map((item) => {
+                        const itemTotal =
+                            (item.plant.price +
+                                item.base.price) *
+                            item.quantity;
 
-                                return (
-                                    <div
-                                        key={item.id}
-                                        className="border-b border-white/10 pb-6 last:border-0 last:pb-0"
-                                    >
-                                        <div className="flex flex-col gap-4">
-                                            {/* Produto */}
-                                            <div className="flex items-start justify-between gap-4">
-                                                <div className="min-w-0">
-                                                    <p className="text-sm text-white/80">
-                                                        Módulo Bio Luz{" "}
-                                                        <strong className="font-medium text-[#FFCD92]">
-                                                            {item.plant.name}
-                                                        </strong>
-                                                    </p>
+                        return (
+                            <div
+                                key={item.id}
+                                className="rounded-xl border border-white/10 bg-white/5 p-4"
+                            >
+                                <div className="flex items-start justify-between gap-4">
+                                    <div className="min-w-0">
+                                        <h3 className="truncate text-sm font-medium text-white">
+                                            {item.plant.name}
+                                        </h3>
 
-                                                    <p className="mt-1 text-sm text-white/60">
-                                                        Base{" "}
-                                                        <strong className="font-medium text-[#FFCD92]">
-                                                            {item.base.type}
-                                                        </strong>
-                                                    </p>
-                                                </div>
-                                                <div className="flex items-start justify-between gap-4">
-                                                    <div className="min-w-0">
-                                                        <span className="shrink-0 text-sm text-white">
-                                                            R$ {formatPrice(item.plant.price)}
-                                                        </span>
-                                                        <br />
-                                                        <span className="shrink-0 text-sm text-white">
-                                                            R$ {formatPrice(item.base.price)}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div className="flex items-start justify-between gap-4">
-                                                <div className="min-w-0">
-                                                    <p className="text-sm text-white/80">
-                                                        Total item
-                                                    </p>
-                                                </div>
-                                                <div className="flex items-start justify-between gap-4">
-                                                    <div className="min-w-0">
-                                                        <span className="text-sm text-[#FFCD92]">
-                                                            Total Item R$ {formatPrice(itemTotal)}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* Controles */}
-                                            <div className="flex items-center justify-between">
-                                                <div
-                                                    className="
-                                                        flex
-                                                        items-center
-                                                        gap-3
-                                                        rounded-lg
-                                                        border
-                                                        border-white/10
-                                                        px-2
-                                                        py-1
-                                                    "
-                                                >
-
-                                                    <button
-                                                        type="button"
-                                                        onClick={() =>
-                                                            updateQuantity(
-                                                                item.id,
-                                                                item.quantity - 1
-                                                            )
-                                                        }
-                                                        className="text-white/50 hover:text-white p-2"
-                                                    >
-                                                        <Minus size={13} />
-                                                    </button>
-
-                                                    <span className="min-w-4 text-center text-xs text-white">
-                                                        {item.quantity}
-                                                    </span>
-
-                                                    <button
-                                                        type="button"
-                                                        onClick={() =>
-                                                            updateQuantity(
-                                                                item.id,
-                                                                item.quantity + 1
-                                                            )
-                                                        }
-                                                        className="text-white/50 hover:text-white p-2"
-                                                    >
-                                                        <Plus size={13} />
-                                                    </button>
-
-                                                </div>
-
-                                                <button
-                                                    type="button"
-                                                    onClick={() =>
-                                                        removeItem(item.id)
-                                                    }
-                                                    className="
-                                                        text-[10px]
-                                                        uppercase
-                                                        tracking-[1.5px]
-                                                        text-white/40
-                                                        transition
-                                                        hover:text-red-400
-                                                    "
-                                                >
-
-                                                    <Trash2 size={15} />
-                                                </button>
-                                            </div>
-                                        </div>
+                                        <p className="mt-1 text-xs text-white/50">
+                                            Base: {item.base.name}
+                                        </p>
                                     </div>
-                                );
-                            })}
-                        </div>
 
-                        {/* Subtotal */}
-                        <div className="mt-6 flex items-center justify-between border-t border-[#FFCD9233] pt-6 text-sm">
-                            <span className="text-white/60">
-                                Subtotal
-                            </span>
+                                    <span className="shrink-0 text-sm text-[#FFCD92]">
+                                        R${" "}
+                                        {formatPrice(itemTotal)}
+                                    </span>
+                                </div>
+
+                                <div className="mt-4 flex items-center justify-between">
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                updateQuantity(
+                                                    item.id,
+                                                    item.quantity - 1
+                                                )
+                                            }
+                                            disabled={
+                                                item.quantity <= 1
+                                            }
+                                            className="flex h-8 w-8 items-center justify-center rounded border border-white/10 text-white/70 transition hover:border-[#FFCD92]/40 hover:text-[#FFCD92] disabled:cursor-not-allowed disabled:opacity-30"
+                                        >
+                                            <Minus size={14} />
+                                        </button>
+
+                                        <span className="w-6 text-center text-sm text-white">
+                                            {item.quantity}
+                                        </span>
+
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                updateQuantity(
+                                                    item.id,
+                                                    item.quantity + 1
+                                                )
+                                            }
+                                            className="flex h-8 w-8 items-center justify-center rounded border border-white/10 text-white/70 transition hover:border-[#FFCD92]/40 hover:text-[#FFCD92]"
+                                        >
+                                            <Plus size={14} />
+                                        </button>
+                                    </div>
+
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            removeItem(item.id)
+                                        }
+                                        className="text-white/40 transition hover:text-red-500"
+                                        aria-label="Remover item"
+                                    >
+                                        <Trash2 size={16} />
+                                    </button>
+                                </div>
+                            </div>
+                        );
+                    })}
+
+                    <div className="border-t border-white/10 pt-5">
+                        <div className="flex items-center justify-between text-sm text-white/60">
+                            <span>Subtotal</span>
 
                             <span>
                                 R$ {formatPrice(subtotal)}
                             </span>
                         </div>
 
-                        {/* Frete */}
-                        <div className="mt-3 flex items-center justify-between text-sm">
-                            <span className="text-white/60">
-                                Frete
-                            </span>
+                        <div className="mt-3 flex items-center justify-between text-sm text-white/60">
+                            <span>Frete</span>
 
                             <span>
                                 R$ {formatPrice(shipping)}
                             </span>
                         </div>
 
-                        {/* Total */}
-                        <div className="mt-6 flex items-center justify-between border-t border-[#FFCD9233] pt-6">
-                            <span className="text-lg">
+                        <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-5">
+                            <span className="text-base text-white">
                                 Total
                             </span>
 
-                            <h3 className="text-2xl font-semibold text-[#FFCD92] sm:text-3xl">
+                            <span className="text-xl font-medium text-[#FFCD92]">
                                 R$ {formatPrice(total)}
-                            </h3>
+                            </span>
                         </div>
+                    </div>
+                    
+                    <span className="text-xs text-red-500">
+                        {error}
+                    </span>
 
-                        <Button className="mt-4 w-full sm:mt-3">
-                            Finalizar e Pagar
-                        </Button>
-
-                        <p className="mt-4 text-center text-[10px] text-white/50">
-                            Ambiente seguro criptografado pela Mol·D
-                        </p>
-                    </>
-                )}
-            </div>
-
-            <Link
-                href="/products"
-                className="text-center text-xs uppercase tracking-[2px] text-white/50 transition hover:text-[#FFCD92]"
-            >
-                ← Alterar Combinação de Módulo e Base
-            </Link>
-        </aside>
+                    <Button
+                        type="submit"
+                        form="checkout-form"
+                        disabled={loading || items.length === 0}
+                        className="mt-4 w-full sm:mt-3"
+                    >
+                        {loading ? "Processando..." : "Finalizar e Pagar"}
+                    </Button>
+                </div>
+            )}
+        </div>
     );
+
 }

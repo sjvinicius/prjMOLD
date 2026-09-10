@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import CardPreview from "./CardPreview";
 import { Button } from "./ui/Button";
 
@@ -41,15 +42,31 @@ export default function PaymentSelector({
     }
 
     return (
-        <div className="space-y-6">
-            <div className="flex gap-3">
+        <div className="w-full min-w-0 space-y-6">
+            {/* Métodos de pagamento */}
+            <div className="grid w-full grid-cols-2 gap-2 sm:gap-3">
                 <button
                     type="button"
                     onClick={() => setPaymentMethod("pix")}
-                    className={`flex-1 rounded-md border px-4 py-3 text-[10px] uppercase tracking-widest transition-all ${paymentMethod === "pix"
-                        ? "border-[#FFCD92] bg-[#FFCD9226] text-[#FFCD92] shadow-[0_0_15px_rgba(255,205,146,.2)]"
-                        : "border-white/10 bg-white/5 text-white"
-                        }`}
+                    className={`
+                        min-w-0
+                        rounded-md
+                        border
+                        px-2
+                        py-3
+                        text-[9px]
+                        uppercase
+                        tracking-[1.5px]
+                        transition-all
+                        sm:px-4
+                        sm:text-[10px]
+                        sm:tracking-widest
+                        ${
+                            paymentMethod === "pix"
+                                ? "border-[#FFCD92] bg-[#FFCD9226] text-[#FFCD92] shadow-[0_0_15px_rgba(255,205,146,.2)]"
+                                : "border-white/10 bg-white/5 text-white"
+                        }
+                    `}
                 >
                     PIX (5% OFF)
                 </button>
@@ -57,70 +74,105 @@ export default function PaymentSelector({
                 <button
                     type="button"
                     onClick={() => setPaymentMethod("card")}
-                    className={`flex-1 rounded-md border px-4 py-3 text-[10px] uppercase tracking-widest transition-all ${paymentMethod === "card"
-                        ? "border-[#FFCD92] bg-[#FFCD9226] text-[#FFCD92] shadow-[0_0_15px_rgba(255,205,146,.2)]"
-                        : "border-white/10 bg-white/5 text-white"
-                        }`}
+                    className={`
+                        min-w-0
+                        rounded-md
+                        border
+                        px-2
+                        py-3
+                        text-[9px]
+                        uppercase
+                        tracking-[1.5px]
+                        transition-all
+                        sm:px-4
+                        sm:text-[10px]
+                        sm:tracking-widest
+                        ${
+                            paymentMethod === "card"
+                                ? "border-[#FFCD92] bg-[#FFCD9226] text-[#FFCD92] shadow-[0_0_15px_rgba(255,205,146,.2)]"
+                                : "border-white/10 bg-white/5 text-white"
+                        }
+                    `}
                 >
                     Cartão de Crédito
                 </button>
             </div>
 
+            {/* Cartão */}
             {paymentMethod === "card" && (
-                <>
-                    <CardPreview
-                        number={cardNumber}
-                        expiry={expiry}
-                        cvv={cvv}
-                    />
+                <div className="w-full min-w-0 space-y-5">
+                    {/* Preview */}
+                    <div className="w-full min-w-0 overflow-hidden">
+                        <CardPreview
+                            number={cardNumber}
+                            expiry={expiry}
+                            cvv={cvv}
+                        />
+                    </div>
 
-                    <div className="space-y-5 rounded-2xl border border-[#FFCD920D] bg-white/5 p-6 backdrop-blur-xl">
-                        <div>
-                            <label className="mb-2 block text-[10px] uppercase tracking-[2px] text-[#FFCD92]">
+                    {/* Dados do cartão */}
+                    <div className="w-full min-w-0 space-y-5 overflow-hidden rounded-2xl border border-[#FFCD920D] bg-white/5 p-4 backdrop-blur-xl sm:p-6">
+                        <div className="min-w-0">
+                            <label className="mb-2 block text-[9px] uppercase tracking-[1.5px] text-[#FFCD92] sm:text-[10px] sm:tracking-[2px]">
                                 Número do Cartão
                             </label>
 
                             <input
-                                className="w-full rounded-md border border-white/10 bg-white/5 px-4 py-3 outline-none transition focus:border-[#FFCD92]"
+                                type="text"
+                                inputMode="numeric"
+                                autoComplete="cc-number"
+                                className="w-full min-w-0 rounded-md border border-white/10 bg-white/5 px-3 py-3 text-sm outline-none transition focus:border-[#FFCD92] sm:px-4"
                                 value={cardNumber}
                                 onChange={(e) =>
                                     setCardNumber(
-                                        formatCardNumber(e.target.value)
+                                        formatCardNumber(
+                                            e.target.value
+                                        )
                                     )
                                 }
                                 placeholder="0000 0000 0000 0000"
                             />
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <label className="mb-2 block text-[10px] uppercase tracking-[2px] text-[#FFCD92]">
+                        <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                            <div className="min-w-0">
+                                <label className="mb-2 block text-[9px] uppercase tracking-[1.5px] text-[#FFCD92] sm:text-[10px] sm:tracking-[2px]">
                                     Validade
                                 </label>
 
                                 <input
-                                    className="w-full rounded-md border border-white/10 bg-white/5 px-4 py-3 outline-none transition focus:border-[#FFCD92]"
+                                    type="text"
+                                    inputMode="numeric"
+                                    autoComplete="cc-exp"
+                                    className="w-full min-w-0 rounded-md border border-white/10 bg-white/5 px-3 py-3 text-sm outline-none transition focus:border-[#FFCD92] sm:px-4"
                                     value={expiry}
                                     onChange={(e) =>
                                         setExpiry(
-                                            formatExpiry(e.target.value)
+                                            formatExpiry(
+                                                e.target.value
+                                            )
                                         )
                                     }
                                     placeholder="MM/AA"
                                 />
                             </div>
 
-                            <div>
-                                <label className="mb-2 block text-[10px] uppercase tracking-[2px] text-[#FFCD92]">
+                            <div className="min-w-0">
+                                <label className="mb-2 block text-[9px] uppercase tracking-[1.5px] text-[#FFCD92] sm:text-[10px] sm:tracking-[2px]">
                                     CVV
                                 </label>
 
                                 <input
-                                    className="w-full rounded-md border border-white/10 bg-white/5 px-4 py-3 outline-none transition focus:border-[#FFCD92]"
+                                    type="text"
+                                    inputMode="numeric"
+                                    autoComplete="cc-csc"
+                                    className="w-full min-w-0 rounded-md border border-white/10 bg-white/5 px-3 py-3 text-sm outline-none transition focus:border-[#FFCD92] sm:px-4"
                                     value={cvv}
                                     onChange={(e) =>
                                         setCvv(
-                                            formatCVV(e.target.value)
+                                            formatCVV(
+                                                e.target.value
+                                            )
                                         )
                                     }
                                     placeholder="123"
@@ -128,16 +180,16 @@ export default function PaymentSelector({
                             </div>
                         </div>
                     </div>
-                </>
+                </div>
             )}
 
+            {/* PIX */}
             {paymentMethod === "pix" && (
-                <>
-                    <div className="flex flex-col items-center justify-center gap-6 rounded-2xl border border-[#FFCD920D] bg-white/5 p-6 backdrop-blur-xl">
-
-                        <Button>Gerar QR Code</Button>
-                    </div>
-                </>
+                <div className="flex w-full flex-col items-center justify-center gap-5 rounded-2xl border border-[#FFCD920D] bg-white/5 p-5 text-center backdrop-blur-xl sm:gap-6 sm:p-6">
+                    <Button className="w-full sm:w-auto">
+                        Gerar QR Code
+                    </Button>
+                </div>
             )}
         </div>
     );
