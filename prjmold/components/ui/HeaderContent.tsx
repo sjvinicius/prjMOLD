@@ -156,6 +156,7 @@ export default function HeaderContent({
                         sm:flex
                         sm:gap-6
                         md:gap-9
+                        ml-auto
                     "
                 >
                     <Link
@@ -251,8 +252,8 @@ export default function HeaderContent({
                         items-center
                         justify-center
                         gap-2
-                        sm:ml-4
-                        md:ml-12
+                        sm:ml-5
+                        md:ml-5
                         md:gap-5
                     "
                 >
