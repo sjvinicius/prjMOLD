@@ -214,7 +214,7 @@ export default function About() {
                     {/* Manifesto */}
 
                     <div className="
-                        rounded-[16px]
+                        rounded-2xl
                         border
                         border-bege/10
                         bg-bege/5
