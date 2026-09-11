@@ -33,6 +33,10 @@ const publicroutes = [
         path: "/sitemap.xml",
         whenauthenticated: "next"
     },
+    {
+        path: "/google31024aee37681a96.html",
+        whenauthenticated: "next"
+    },
 ] as const;
 
 const REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE = '/signin'
