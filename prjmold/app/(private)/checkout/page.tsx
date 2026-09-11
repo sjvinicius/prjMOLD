@@ -70,7 +70,7 @@ export default function CheckoutPage() {
     };
 
     return (
-        <section className="relative min-h-screen overflow-hidden py-8 sm:py-12 lg:flex lg:items-center lg:py-24">
+        <section className="relative min-h-screen overflow-hidden py-16 sm:py-12 lg:flex lg:items-center lg:py-24">
             {/* Background */}
             <div
                 className="absolute inset-0 scale-110 bg-cover bg-center blur-lg"
