@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
+import { ArrowLeft } from "lucide-react";
 
 type SuccessPageProps = {
     searchParams: Promise<{
@@ -16,7 +17,7 @@ export default async function SuccessPage({
 
     if (!orderNsu) {
         return (
-            <main className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-12">
+            <main className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-12 mt-15">
                 <div
                     className="absolute inset-0 scale-110 bg-cover bg-center blur-lg"
                     style={{
@@ -86,7 +87,7 @@ export default async function SuccessPage({
 
     if (orderError || !order) {
         return (
-            <main className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-12">
+            <main className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-12 mt-15">
                 <div
                     className="absolute inset-0 scale-110 bg-cover bg-center blur-lg"
                     style={{
@@ -137,7 +138,7 @@ export default async function SuccessPage({
     const isPaid = order.payment_status === "PAID";
 
     return (
-        <main className="relative min-h-screen overflow-hidden px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <main className="relative min-h-screen overflow-hidden px-4 py-8 sm:px-6 sm:py-12 lg:px-8 mt-15">
             <div
                 className="fixed inset-0 scale-110 bg-cover bg-center blur-lg"
                 style={{
@@ -148,7 +149,16 @@ export default async function SuccessPage({
 
             <div className="relative z-10 mx-auto w-full max-w-4xl">
                 <section className="rounded-3xl border border-[#FFCD920D] bg-[rgba(10,10,10,.5)] p-6 backdrop-blur-xl sm:p-10 lg:p-12">
-                    {/* Status */}
+                    <a
+                        className="group inline-flex items-center gap-1 text-xs font-medium text-[#FFCD92] transition hover:opacity-80"
+                        href="/orders"
+                    >
+                        <ArrowLeft
+                            size={14}
+                            className="transition-transform group-hover:translate-x-0.5"
+                        />
+                        Ver meus pedidos
+                    </a>{/* Status */}
 
                     <div className="text-center">
                         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#FFCD92]/10">
@@ -190,11 +200,10 @@ export default async function SuccessPage({
                                 </p>
 
                                 <p
-                                    className={`mt-1 text-sm font-medium ${
-                                        isPaid
-                                            ? "text-[#FFCD92]"
-                                            : "text-white"
-                                    }`}
+                                    className={`mt-1 text-sm font-medium ${isPaid
+                                        ? "text-[#FFCD92]"
+                                        : "text-white"
+                                        }`}
                                 >
                                     {isPaid
                                         ? "Pagamento aprovado"
