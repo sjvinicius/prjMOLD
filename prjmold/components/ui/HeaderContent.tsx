@@ -411,7 +411,7 @@ export default function HeaderContent({
                             </div>
 
                             {/* Links */}
-                            <nav className="mt-12 flex flex-col gap-7">
+                            <nav className="mt-12 flex flex-col gap-7 h-full">
                                 <Link
                                     href="/products"
                                     onClick={() =>
@@ -460,7 +460,7 @@ export default function HeaderContent({
                                             transition
                                             hover:text-[#FFCD92]
                                         "
-                                    >
+                                        >
                                         Entrar
                                     </Link>
                                 )}
@@ -496,6 +496,7 @@ export default function HeaderContent({
                                                 text-(--color-bege)
                                                 transition
                                                 hover:text-[#FFCD92]
+                                                mt-auto
                                             "
                                         >
                                             Sair
