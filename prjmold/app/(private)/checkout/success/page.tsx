@@ -47,6 +47,14 @@ export default async function SuccessPage({
 
     const supabase = await createClient();
 
+    const {
+        data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+        return null;
+    }
+
     const { data: order, error: orderError } =
         await supabase
             .schema("scmold")
@@ -73,6 +81,7 @@ export default async function SuccessPage({
                 `
             )
             .eq("order_nsu", orderNsu)
+            .eq("user_id", user.id)
             .single();
 
     if (orderError || !order) {

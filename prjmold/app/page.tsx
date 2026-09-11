@@ -1,10 +1,10 @@
-import Header from "@/components/Header";
-import { Metadata } from "next";
-import Image from "next/image";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Home - MOL-D",
-};
+export const metadata = createPageMetadata(
+  "Luminárias autorais em 3D",
+  "Conheça a Mol·D: luminárias e objetos de design criados em 3D para transformar ambientes em refúgios de bem-estar.",
+  "/",
+);
 
 export default function Home() {
   return (

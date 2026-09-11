@@ -1,4 +1,11 @@
 import Image from "next/image";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata(
+    "Manifesto e processo",
+    "Conheça o manifesto da Mol·D e o processo integral por trás de cada luminária e objeto de design.",
+    "/about",
+);
 
 export default function About() {
 

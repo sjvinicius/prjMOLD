@@ -3,9 +3,32 @@ import { NextRequest, NextResponse } from "next/server";
 
 const INFINITEPAY_PAYMENT_CHECK =
     "https://api.checkout.infinitepay.io/payment_check";
+const MAX_REQUEST_BYTES = 25_000;
+
+function safeReceiptUrl(value: unknown) {
+    if (typeof value !== "string" || value.length > 2_000) {
+        return null;
+    }
+
+    try {
+        const url = new URL(value);
+        return url.protocol === "https:" ? url.toString() : null;
+    } catch {
+        return null;
+    }
+}
 
 export async function POST(request: NextRequest) {
     try {
+        const contentLength = Number(request.headers.get("content-length") ?? 0);
+
+        if (contentLength > MAX_REQUEST_BYTES) {
+            return NextResponse.json(
+                { success: false, message: "Requisição muito grande." },
+                { status: 413 }
+            );
+        }
+
         const body = await request.json();
 
         const {
@@ -62,7 +85,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const supabase = await createClient;
+        const supabase = createClient;
 
         /*
          * Localiza o pedido pelo order_nsu.
@@ -245,7 +268,7 @@ export async function POST(request: NextRequest) {
                     statusorder: "PREPARING",
                     infinitepay_invoice_slug: invoice_slug,
                     infinitepay_transaction_nsu: transaction_nsu,
-                    infinitepay_receipt_url: receipt_url ?? null,
+                    infinitepay_receipt_url: safeReceiptUrl(receipt_url),
                     infinitepay_capture_method:
                         capture_method ??
                         paymentCheck.capture_method ??

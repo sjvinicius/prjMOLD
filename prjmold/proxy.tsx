@@ -25,6 +25,14 @@ const publicroutes = [
         path: "/about",
         whenauthenticated: "next"
     },
+    {
+        path: "/robots.txt",
+        whenauthenticated: "next"
+    },
+    {
+        path: "/sitemap.xml",
+        whenauthenticated: "next"
+    },
 ] as const;
 
 const REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE = '/signin'

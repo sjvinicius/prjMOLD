@@ -1,6 +1,13 @@
 import ProductConfigurator from "@/components/ProductConfigurator";
 import { getProductsByType } from "@/repositories/productRepository";
 import { Suspense } from "react";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata(
+    "Monte sua luminária",
+    "Combine plantas e bases para criar uma luminária Mol·D com design 3D, materiais resistentes e iluminação acolhedora.",
+    "/products",
+);
 
 export default async function ProductPage() {
 

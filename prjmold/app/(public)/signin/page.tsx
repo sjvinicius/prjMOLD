@@ -1,4 +1,13 @@
 import LoginForm from "@/components/LoginForm";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Entrar",
+    robots: {
+        index: false,
+        follow: false,
+    },
+};
 
 export default function Signin() {
     return (

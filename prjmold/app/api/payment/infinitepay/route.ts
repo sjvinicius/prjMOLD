@@ -1,20 +1,37 @@
 import { CartItem } from "@/context/CartContext";
 import { createClient } from "@/utils/supabase/server";
+import { checkoutSchema } from "@/utils/validations/payment";
 import { NextRequest, NextResponse } from "next/server";
 
 const INFINITEPAY_API =
     "https://api.checkout.infinitepay.io/links";
 
 const SHIPPING = 0.99;
+const MAX_REQUEST_BYTES = 100_000;
+const MAX_CART_ITEMS = 50;
+const MAX_ITEM_QUANTITY = 100;
 
 export async function POST(request: NextRequest) {
     try {
+        const contentLength = Number(request.headers.get("content-length") ?? 0);
+
+        if (contentLength > MAX_REQUEST_BYTES) {
+            return NextResponse.json(
+                { success: false, error: "Requisição muito grande." },
+                { status: 413 }
+            );
+        }
+
         const body = await request.json();
 
         const items: CartItem[] = body.items;
         const customer = body.customer;
 
-        if (!Array.isArray(items) || items.length === 0) {
+        if (
+            !Array.isArray(items) ||
+            items.length === 0 ||
+            items.length > MAX_CART_ITEMS
+        ) {
             return NextResponse.json(
                 {
                     success: false,
@@ -24,7 +41,9 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        if (!customer || typeof customer !== "object") {
+        const customerResult = checkoutSchema.safeParse(customer);
+
+        if (!customerResult.success) {
             return NextResponse.json(
                 {
                     success: false,
@@ -40,9 +59,11 @@ export async function POST(request: NextRequest) {
         for (const item of items) {
             if (
                 typeof item.id !== "string" ||
+                item.id.length > 100 ||
                 !item.id ||
                 !Number.isInteger(item.quantity) ||
-                item.quantity < 1
+                item.quantity < 1 ||
+                item.quantity > MAX_ITEM_QUANTITY
             ) {
                 return NextResponse.json(
                     {
@@ -62,9 +83,10 @@ export async function POST(request: NextRequest) {
         const productIds = new Set<string>();
 
         for (const item of items) {
-            const [plantId, baseId] = item.id.split("::");
+            const parts = item.id.split("::");
+            const [plantId, baseId] = parts;
 
-            if (!plantId || !baseId) {
+            if (parts.length !== 2 || !plantId || !baseId) {
                 return NextResponse.json(
                     {
                         success: false,
@@ -218,15 +240,15 @@ export async function POST(request: NextRequest) {
                 user_id: user.id,
                 order_nsu: orderNsu,
 
-                customer_email: customer.email,
-                customer_cpf: customer.cpf ?? null,
+                customer_email: customerResult.data.email,
+                customer_cpf: null,
 
-                cep: customer.cep,
-                address: customer.address,
-                number: customer.number,
-                district: customer.district,
-                city: customer.city,
-                complement: customer.complement || null,
+                cep: customerResult.data.cep,
+                address: customerResult.data.address,
+                number: customerResult.data.number,
+                district: customerResult.data.district,
+                city: customerResult.data.city,
+                complement: customerResult.data.complement || null,
 
                 subtotal,
                 shipping,
@@ -349,17 +371,17 @@ export async function POST(request: NextRequest) {
 
             items: paymentItems,
 
-            customer: {
-                email: customer.email,
+                    customer: {
+                email: customerResult.data.email,
             },
 
             address: {
-                cep: customer.cep,
-                street: customer.address,
-                number: customer.number,
-                neighborhood: customer.district,
-                city: customer.city,
-                complement: customer.complement || undefined,
+                cep: customerResult.data.cep,
+                street: customerResult.data.address,
+                number: customerResult.data.number,
+                neighborhood: customerResult.data.district,
+                city: customerResult.data.city,
+                complement: customerResult.data.complement || undefined,
             },
         };
 
