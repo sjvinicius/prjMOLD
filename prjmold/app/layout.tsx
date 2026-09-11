@@ -8,7 +8,9 @@ import CursorLight from "@/components/CursorLight";
 import Header from "../components/Header";
 import { CartProvider } from "@/context/CartContext";
 import { siteDescription, siteName, siteUrl } from "@/lib/seo";
+
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -103,6 +105,7 @@ export default function RootLayout({
         </body>
       </html>
       <Analytics />
+      <SpeedInsights />
     </>
 
   );
