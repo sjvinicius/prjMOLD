@@ -4,7 +4,7 @@ export const siteName = "Mol·D";
 export const siteDescription =
   "Luminárias e objetos de design criados em 3D para transformar ambientes em refúgios de bem-estar.";
 export const siteUrl = new URL(
-  process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
 );
 
 export function createPageMetadata(

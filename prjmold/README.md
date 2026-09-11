@@ -18,7 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### URL pública
 
-Defina `NEXT_PUBLIC_SITE_URL` no ambiente de produção com a URL canônica do site, incluindo `https://` (por exemplo, `https://www.seudominio.com.br`). Essa variável é usada pelos metadados, canonical, sitemap e robots.txt.
+Defina `NEXT_PUBLIC_APP_URL` no ambiente de produção com a URL canônica do site, incluindo `https://` (por exemplo, `https://www.seudominio.com.br`). Essa variável é usada pelos metadados, canonical, sitemap e robots.txt.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

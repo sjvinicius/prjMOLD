@@ -27,6 +27,23 @@ export const metadata: Metadata = {
   publisher: siteName,
   category: "home decor",
   formatDetection: { telephone: false },
+  keywords: [
+    "MolD",
+    "Mold",
+    "mold",
+    "mOld",
+    "mOLd",
+    "Mold Ecommerce",
+    "Mol-D",
+    "Mol D",
+    "Estúdio Mol-D",
+    "Estúdio Mol·D",
+    "Bio Luz",
+    "luminária 3D",
+    "luminária personalizada",
+    "impressão 3D",
+    "decoração",
+  ],
 };
 
 export default function RootLayout({
