@@ -509,12 +509,10 @@ export default function HeaderContent({
                                             <Link
                                                 href="/manage/orders"
                                                 className="
-                                                    text-[10px]
-                                                    sm:text-xs
+                                                    text-sm
                                                     uppercase
-                                                    tracking-[1.5px]
-                                                    sm:tracking-[2px]
-                                                    text-white/60
+                                                    tracking-[2px]
+                                                    text-white/70
                                                     transition
                                                     hover:text-[#FFCD92]
                                                 "
