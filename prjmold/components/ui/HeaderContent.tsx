@@ -23,6 +23,11 @@ export default function HeaderContent({
     const router = useRouter();
 
     const { count, items } = useCart();
+    const role = user?.app_metadata?.role?.toUpperCase();
+
+    const isManager =
+        role === "ADMIN" ||
+        role === "MANAGER";
 
     const [scrolled, setScrolled] = useState(false);
     const [cartOpen, setCartOpen] = useState(false);
@@ -93,10 +98,9 @@ export default function HeaderContent({
                     px-5 sm:px-8 md:px-[8%]
                     py-3 sm:py-2
                     transition-all duration-300
-                    ${
-                        scrolled
-                            ? "bg-black/90 backdrop-blur-md shadow-lg"
-                            : "bg-linear-to-b from-black/50 to-transparent"
+                    ${scrolled
+                        ? "bg-black/90 backdrop-blur-md shadow-lg"
+                        : "bg-linear-to-b from-black/50 to-transparent"
                     }
                 `}
             >
@@ -226,6 +230,23 @@ export default function HeaderContent({
                             >
                                 Meus Pedidos
                             </Link>
+                            {isManager && (
+                                <Link
+                                    href="/manage/orders"
+                                    className="
+                                        text-[10px]
+                                        sm:text-xs
+                                        uppercase
+                                        tracking-[1.5px]
+                                        sm:tracking-[2px]
+                                        text-white/60
+                                        transition
+                                        hover:text-[#FFCD92]
+                                    "
+                                >
+                                    Gestão
+                                </Link>
+                            )}
 
                             <Button
                                 onClick={handleLogout}
@@ -460,7 +481,7 @@ export default function HeaderContent({
                                             transition
                                             hover:text-[#FFCD92]
                                         "
-                                        >
+                                    >
                                         Entrar
                                     </Link>
                                 )}
@@ -483,6 +504,24 @@ export default function HeaderContent({
                                         >
                                             Meus Pedidos
                                         </Link>
+
+                                        {isManager && (
+                                            <Link
+                                                href="/manage/orders"
+                                                className="
+                                                    text-[10px]
+                                                    sm:text-xs
+                                                    uppercase
+                                                    tracking-[1.5px]
+                                                    sm:tracking-[2px]
+                                                    text-white/60
+                                                    transition
+                                                    hover:text-[#FFCD92]
+                                                "
+                                            >
+                                                Gestão
+                                            </Link>
+                                        )}
 
                                         <button
                                             type="button"
