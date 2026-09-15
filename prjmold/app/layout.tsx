@@ -91,8 +91,9 @@ export default function RootLayout({
             />
             <Image
               src="/fundo_hero.jpg"
-              alt=""
+              alt="Fundo parcialmente opaco com uma planta modelo da MOL-D"
               fill
+              sizes="100vw"
               priority
               className="hero-image object-cover"
             />

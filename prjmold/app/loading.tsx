@@ -18,7 +18,7 @@ export default function Loading() {
                 <div className="animate-pulse">
                     <Image
                         src="/logo_simbolo.png"
-                        alt="Mol·D"
+                        alt="Logo símbolo da MOL·D"
                         width={80}
                         height={80}
                         priority

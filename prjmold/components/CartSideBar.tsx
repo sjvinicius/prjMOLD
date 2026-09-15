@@ -189,6 +189,7 @@ export default function CartSidebar({
                                                         src={item.plant.image}
                                                         alt={item.plant.name}
                                                         fill
+                                                        sizes="40px"
                                                         className="object-cover"
                                                     />
                                                 </div>
@@ -198,6 +199,7 @@ export default function CartSidebar({
                                                         src={item.base.image}
                                                         alt={item.base.name}
                                                         fill
+                                                        sizes="40px"
                                                         className="object-cover"
                                                     />
                                                 </div>
