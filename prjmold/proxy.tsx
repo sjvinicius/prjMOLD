@@ -39,6 +39,13 @@ const publicroutes = [
     },
 ] as const;
 
+const notpublicroutes = [
+    "/orders",
+    "/manage/orders",
+    "/checkout",
+    "/checkout/success",
+] as const;
+
 const REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE = '/signin'
 
 // function isTokenExpired(token: string): boolean {
@@ -64,6 +71,15 @@ export function proxy(request: NextRequest) {
 
     const path = request.nextUrl.pathname
     const publicroute = publicroutes.find(route => path === route.path)
+    const isnotpublicroutes = notpublicroutes.find(route => path === route)
+
+    if (!isnotpublicroutes && !publicroute) {
+        const redirecturl = request.nextUrl.clone()
+        redirecturl.pathname = "/not-found"
+
+        return NextResponse.redirect(redirecturl)
+    }
+
     const authcookie = request.cookies
         .getAll()
         .find(cookie =>
@@ -133,6 +149,6 @@ export const config: ProxyConfig = {
              * - _next/image (image optimization files)
              * - favicon.ico (favicon file)
              */
-        '/((?!api|_next/static|_next/image|favicon.ico|loading|about_.*\\.jpg|base_.*\\.png|plant_.*\\.png|logo_.*\\.png|fundo_.*\\.jpg|fundo_.*\\.png).*)',
+        '/((?!api|not-found|_next/static|_next/image|favicon.ico|loading|about_.*\\.jpg|base_.*\\.png|plant_.*\\.png|logo_.*\\.png|fundo_.*\\.jpg|fundo_.*\\.png).*)',
     ]
 }
