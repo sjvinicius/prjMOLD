@@ -187,7 +187,7 @@ export default function CartSidebar({
                                                 <div className="relative h-full w-1/2 bg-white/10">
                                                     <Image
                                                         src={item.plant.image}
-                                                        alt={item.plant.name}
+                                                        alt={`Imagem da planta ${item.plant.name} parte do topo da luminária`}
                                                         fill
                                                         sizes="40px"
                                                         className="object-cover"
@@ -197,7 +197,7 @@ export default function CartSidebar({
                                                 <div className="relative h-full w-1/2 bg-white/10">
                                                     <Image
                                                         src={item.base.image}
-                                                        alt={item.base.name}
+                                                        alt={`Imagem da base ${item.base.name} parte da base da luminária`}
                                                         fill
                                                         sizes="40px"
                                                         className="object-cover"

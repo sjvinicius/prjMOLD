@@ -361,9 +361,9 @@ export default function AdminOrdersClient() {
                             Administração
                         </p>
 
-                        <h1 className="text-3xl font-semibold tracking-tight">
+                        <h2 className="text-3xl font-semibold tracking-tight">
                             Pedidos
-                        </h1>
+                        </h2>
 
                         <p className="mt-2 text-sm text-white/50">
                             Gerencie os pedidos pagos e acompanhe sua
