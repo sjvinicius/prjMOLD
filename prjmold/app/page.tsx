@@ -17,9 +17,7 @@ export default function Home() {
           </span>
 
           <h1 className="mb-5 text-[clamp(50px,10vw,110px)] leading-[0.9] text-[#FFCD92]">
-            LUZ QUE
-            <br />
-            ACOLHE.
+            LUZ QUE ACOLHE.
           </h1>
 
           <p className="mb-10 max-w-105 text-base text-white/80">
