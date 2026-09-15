@@ -55,7 +55,7 @@ export default function CardPreview({
 
                     <Image
                         src="/logo_simbolo.png"
-                        alt="Logo símbolo da MOL-D"
+                        alt="Logo símbolo da MOL·D"
                         width={50}
                         height={50}
                         className="

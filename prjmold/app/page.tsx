@@ -1,7 +1,7 @@
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata(
-  "Luminárias autorais em 3D",
+  "Mol·D - Estúdio de Design e Tecnologia",
   "Conheça a Mol·D: luminárias e objetos de design criados em 3D para transformar ambientes em refúgios de bem-estar.",
   "/",
 );

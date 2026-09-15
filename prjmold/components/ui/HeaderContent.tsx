@@ -137,7 +137,7 @@ export default function HeaderContent({
                             width={120}
                             height={50}
                             loading="eager"
-                            alt="Logo escrita da MOL-D"
+                            alt="Logo escrita da MOL·D"
                             className="
                                 h-auto
                                 w-15
@@ -283,7 +283,7 @@ export default function HeaderContent({
                             src="/logo_simbolo.png"
                             width={120}
                             height={120}
-                            alt="Logo simbolo da MOL-D"
+                            alt="Logo simbolo da MOL·D"
                             className="
                                 block
                                 h-16
@@ -405,7 +405,7 @@ export default function HeaderContent({
                                     src="/logo_escrita.png"
                                     width={150}
                                     height={150}
-                                    alt="Logo escrita da MOL-D"
+                                    alt="Logo escrita da MOL·D"
                                     className="
                                         h-15
                                         w-15

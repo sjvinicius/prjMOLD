@@ -37,7 +37,7 @@ export default function About() {
                 src="/about_2.jpg"
                 fill
                 sizes="100vw"
-                alt="Imagem 2 de fundo mostrando o ambinete de desenvolvimento da MOL-D"
+                alt="Imagem 2 de fundo mostrando o ambinete de desenvolvimento da MOL·D"
             />
 
             <Image
@@ -46,7 +46,7 @@ export default function About() {
                 src="/about_3.jpg"
                 fill
                 sizes="100vw"
-                alt="Imagem 3 de fundo mostrando o ambinete de desenvolvimento da MOL-D"
+                alt="Imagem 3 de fundo mostrando o ambinete de desenvolvimento da MOL·D"
             />
 
             <Image
@@ -55,7 +55,7 @@ export default function About() {
                 src="/about_4.jpg"
                 fill
                 sizes="100vw"
-                alt="Imagem 4 de fundo mostrando o ambinete de desenvolvimento da MOL-D"
+                alt="Imagem 4 de fundo mostrando o ambinete de desenvolvimento da MOL·D"
             />
 
 
