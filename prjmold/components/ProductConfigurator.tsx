@@ -34,7 +34,7 @@ export default function ProductConfigurator({ plants, bases }: ProductConfigurat
                         <ConfigBlock
                             title="Módulo Vegetal"
                             image={plant.current.image}
-                            alt={plant.current.name}
+                            alt={`Imagem da planta ${plant.current.name} parte do topo da luminária`}
                             onPrevious={plant.previous}
                             onNext={plant.next}
                         />
@@ -42,7 +42,7 @@ export default function ProductConfigurator({ plants, bases }: ProductConfigurat
                         <ConfigBlock
                             title="Base Tecnológica"
                             image={base.current.image}
-                            alt={base.current.name}
+                            alt={`Imagem da base ${base.current.name} parte da base da luminária`}
                             onPrevious={base.previous}
                             onNext={base.next}
                         />

@@ -27,9 +27,9 @@ export default async function SuccessPage({
                 />
 
                 <section className="relative z-10 w-full max-w-xl rounded-3xl border border-[#FFCD920D] bg-[rgba(10,10,10,.5)] p-8 text-center backdrop-blur-xl sm:p-12">
-                    <h1 className="text-2xl font-semibold text-white">
+                    <h3 className="text-2xl font-semibold text-white">
                         Pedido não encontrado
-                    </h1>
+                    </h3>
 
                     <p className="mt-3 text-sm text-white/60">
                         Não foi possível identificar o pedido.
@@ -97,9 +97,9 @@ export default async function SuccessPage({
                 />
 
                 <section className="relative z-10 w-full max-w-xl rounded-3xl border border-[#FFCD920D] bg-[rgba(10,10,10,.5)] p-8 text-center backdrop-blur-xl sm:p-12">
-                    <h1 className="text-2xl font-semibold text-white">
+                    <h3 className="text-2xl font-semibold text-white">
                         Pedido não encontrado
-                    </h1>
+                    </h3>
 
                     <p className="mt-3 text-sm text-white/60">
                         Não encontramos um pedido associado a este
@@ -167,11 +167,11 @@ export default async function SuccessPage({
                             </span>
                         </div>
 
-                        <h1 className="mt-5 text-3xl font-semibold text-white">
+                        <h2 className="mt-5 text-3xl font-semibold text-white">
                             {isPaid
                                 ? "Obrigado pela sua compra!"
                                 : "Pedido recebido!"}
-                        </h1>
+                        </h2>
 
                         <p className="mx-auto mt-3 max-w-lg text-sm leading-6 text-white/60">
                             {isPaid

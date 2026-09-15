@@ -155,9 +155,9 @@ export default async function OrdersPage() {
                                 Minha conta
                             </p>
 
-                            <h1 className="mt-1 text-2xl font-semibold text-white sm:text-3xl">
+                            <h2 className="mt-1 text-2xl font-semibold text-white sm:text-3xl">
                                 Meus pedidos
-                            </h1>
+                            </h2>
                         </div>
                     </div>
 

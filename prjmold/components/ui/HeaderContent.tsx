@@ -192,7 +192,7 @@ export default function HeaderContent({
                         "
                         href="/about"
                     >
-                        Sobre
+                        Conheça o Estúdio Mol·D
                     </Link>
 
                     {!user && (
@@ -464,7 +464,7 @@ export default function HeaderContent({
                                         hover:text-[#FFCD92]
                                     "
                                 >
-                                    Sobre
+                                    Conheça o Estúdio Mol·D
                                 </Link>
 
                                 {!user && (

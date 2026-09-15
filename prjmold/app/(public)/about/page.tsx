@@ -100,8 +100,7 @@ export default function About() {
                             O Manifesto
                         </span>
 
-
-                        <h1 className="
+                        <h2 className="
                             main-title
                             mt-4
 
@@ -112,7 +111,7 @@ export default function About() {
                             md:text-5xl
                         ">
                             A Mol·D nasce da transformação de ideias em presença.
-                        </h1>
+                        </h2>
 
 
                         <p className="
