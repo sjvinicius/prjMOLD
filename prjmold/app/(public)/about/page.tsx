@@ -3,7 +3,7 @@ import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata(
     "Manifesto e processo",
-    "Conheça o manifesto da Mol·D e o processo integral por trás de cada luminária e objeto de design.",
+    "Conheça o manifesto da Mol·D e descubra o processo criativo por trás de cada luminária e objeto de design, unindo tecnologia, materiais e identidade.",
     "/about",
 );
 
@@ -96,11 +96,7 @@ export default function About() {
                         sm:mb-16
                     ">
 
-                        <span className="sub-title">
-                            O Manifesto
-                        </span>
-
-                        <h2 className="
+                        <h1 className="
                             main-title
                             mt-4
 
@@ -111,8 +107,11 @@ export default function About() {
                             md:text-5xl
                         ">
                             A Mol·D nasce da transformação de ideias em presença.
-                        </h2>
+                        </h1>
 
+                        <h2 className="sub-title">
+                            O Manifesto
+                        </h2>
 
                         <p className="
                             mb-8

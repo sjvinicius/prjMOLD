@@ -12,17 +12,17 @@ export default function Home() {
       <section className="relative flex h-screen items-center overflow-hidden bg-black/60 px-[8%]">
 
         <div className="relative z-10 max-w-175">
-          <span className="mb-4 block text-[10px] font-medium uppercase tracking-[5px] text-[#FFCD92]">
-            Estúdio Mol·D
-          </span>
 
           <h1 className="mb-5 text-[clamp(50px,10vw,110px)] leading-[0.9] text-[#FFCD92]">
+            <span className="mb-4 block text-[10px] font-medium uppercase tracking-[5px] text-[#FFCD92]">
+              Estúdio Mol·D
+            </span>
             LUZ QUE ACOLHE.
           </h1>
 
-          <p className="mb-10 max-w-105 text-base text-white/80">
+          <h2 className="mb-10 max-w-105 text-base text-white/80">
             Luminárias criadas em 3D com texturas orgânicas para transformar seu ambiente em um refúgio de bem-estar.
-          </p>
+          </h2>
 
           <div className="flex gap-5">
             <a
