@@ -94,7 +94,6 @@ export default function RootLayout({
               width={1920}
               height={1280}
               sizes="100vw"
-              priority
               className="hero-image"
             />
 

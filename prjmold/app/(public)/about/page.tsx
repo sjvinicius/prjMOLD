@@ -24,7 +24,6 @@ export default function About() {
 
             <Image
                 className="bg-layer layer-1 object-cover"
-                loading="eager"
                 src="/about_1.jpg"
                 sizes="100vw"
                 priority

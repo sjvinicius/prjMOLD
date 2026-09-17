@@ -58,7 +58,6 @@ export default function CardPreview({
                         alt="Logo símbolo da MOL·D"
                         width={50}
                         height={50}
-                        priority
                         className="
                             h-9
                             w-auto
