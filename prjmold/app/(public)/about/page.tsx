@@ -3,7 +3,7 @@ import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata(
     "Manifesto e processo",
-    "Conheça o manifesto da Mol·D e o processo integral por trás de cada luminária e objeto de design.",
+    "Conheça o manifesto da Mol·D e descubra o processo criativo por trás de cada luminária e objeto de design, unindo tecnologia, materiais e identidade.",
     "/about",
 );
 
@@ -26,8 +26,10 @@ export default function About() {
                 className="bg-layer layer-1 object-cover"
                 loading="eager"
                 src="/about_1.jpg"
-                fill
                 sizes="100vw"
+                priority
+                width={1920}
+                height={1280}
                 alt="Imagem 1 de fundo mostrando o ambinete de desenvolvimento da MOL-D"
             />
 
@@ -35,8 +37,9 @@ export default function About() {
                 className="bg-layer layer-2 object-cover"
                 loading="eager"
                 src="/about_2.jpg"
-                fill
                 sizes="100vw"
+                width={1920}
+                height={1280}
                 alt="Imagem 2 de fundo mostrando o ambinete de desenvolvimento da MOL·D"
             />
 
@@ -44,8 +47,9 @@ export default function About() {
                 className="bg-layer layer-3 object-cover"
                 loading="eager"
                 src="/about_3.jpg"
-                fill
                 sizes="100vw"
+                width={1920}
+                height={1280}
                 alt="Imagem 3 de fundo mostrando o ambinete de desenvolvimento da MOL·D"
             />
 
@@ -53,8 +57,9 @@ export default function About() {
                 className="bg-layer layer-4 object-cover"
                 loading="eager"
                 src="/about_4.jpg"
-                fill
                 sizes="100vw"
+                width={1920}
+                height={1280}
                 alt="Imagem 4 de fundo mostrando o ambinete de desenvolvimento da MOL·D"
             />
 
@@ -96,11 +101,7 @@ export default function About() {
                         sm:mb-16
                     ">
 
-                        <span className="sub-title">
-                            O Manifesto
-                        </span>
-
-                        <h2 className="
+                        <h1 className="
                             main-title
                             mt-4
 
@@ -111,8 +112,11 @@ export default function About() {
                             md:text-5xl
                         ">
                             A Mol·D nasce da transformação de ideias em presença.
-                        </h2>
+                        </h1>
 
+                        <h2 className="sub-title">
+                            O Manifesto
+                        </h2>
 
                         <p className="
                             mb-8
