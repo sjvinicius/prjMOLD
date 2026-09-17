@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-
-import Head from "next/head";
 import Image from "next/image";
 import CursorLight from "@/components/CursorLight";
 import Header from "../components/Header";
 import { CartProvider } from "@/context/CartContext";
 import { siteDescription, siteName, siteUrl } from "@/lib/seo";
-
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -56,9 +53,6 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <Head>
-        <link rel="preload" as="image" href="/fundo_hero.jpg" />
-      </Head>
       <html
         lang="pt-br"
         className={`${poppins.variable} h-full antialiased`}
@@ -66,6 +60,7 @@ export default function RootLayout({
         <body className="min-h-full flex flex-col">
           <CartProvider>
             <Header />
+
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{
@@ -76,7 +71,10 @@ export default function RootLayout({
                       "@type": "Organization",
                       name: siteName,
                       url: siteUrl.toString(),
-                      logo: new URL("/logo_escrita.png", siteUrl).toString(),
+                      logo: new URL(
+                        "/logo_escrita.png",
+                        siteUrl
+                      ).toString(),
                       description: siteDescription,
                     },
                     {
@@ -89,25 +87,28 @@ export default function RootLayout({
                 }),
               }}
             />
+
             <Image
               src="/fundo_hero.jpg"
-              alt="Fundo parcialmente opaco com uma planta modelo da MOL-D"
-              fill
+              alt=""
+              width={1920}
+              height={1280}
               sizes="100vw"
               priority
-              className="hero-image object-cover"
+              className="hero-image"
             />
-            <CursorLight />
 
+            <CursorLight />
 
             {children}
           </CartProvider>
+
           <div className="noise-overlay" aria-hidden="true" />
         </body>
       </html>
+
       <Analytics />
       <SpeedInsights />
     </>
-
   );
 }

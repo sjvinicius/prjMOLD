@@ -26,8 +26,10 @@ export default function About() {
                 className="bg-layer layer-1 object-cover"
                 loading="eager"
                 src="/about_1.jpg"
-                fill
                 sizes="100vw"
+                priority
+                width={1920}
+                height={1280}
                 alt="Imagem 1 de fundo mostrando o ambinete de desenvolvimento da MOL-D"
             />
 
@@ -35,8 +37,9 @@ export default function About() {
                 className="bg-layer layer-2 object-cover"
                 loading="eager"
                 src="/about_2.jpg"
-                fill
                 sizes="100vw"
+                width={1920}
+                height={1280}
                 alt="Imagem 2 de fundo mostrando o ambinete de desenvolvimento da MOL·D"
             />
 
@@ -44,8 +47,9 @@ export default function About() {
                 className="bg-layer layer-3 object-cover"
                 loading="eager"
                 src="/about_3.jpg"
-                fill
                 sizes="100vw"
+                width={1920}
+                height={1280}
                 alt="Imagem 3 de fundo mostrando o ambinete de desenvolvimento da MOL·D"
             />
 
@@ -53,8 +57,9 @@ export default function About() {
                 className="bg-layer layer-4 object-cover"
                 loading="eager"
                 src="/about_4.jpg"
-                fill
                 sizes="100vw"
+                width={1920}
+                height={1280}
                 alt="Imagem 4 de fundo mostrando o ambinete de desenvolvimento da MOL·D"
             />
 

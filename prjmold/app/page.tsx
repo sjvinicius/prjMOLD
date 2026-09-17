@@ -1,4 +1,5 @@
 import { createPageMetadata } from "@/lib/seo";
+import Image from "next/image";
 
 export const metadata = createPageMetadata(
   "Mol·D - Estúdio de Design e Tecnologia",

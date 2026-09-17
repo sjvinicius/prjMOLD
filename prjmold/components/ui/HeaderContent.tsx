@@ -284,6 +284,7 @@ export default function HeaderContent({
                             width={120}
                             height={120}
                             alt="Logo simbolo da MOL·D"
+                            priority
                             className="
                                 block
                                 h-16
