@@ -23,7 +23,7 @@ export default function About() {
             {/* Backgrounds */}
 
             <Image
-                className="bg-layer layer-1 object-cover"
+                className="bg-layer layer-1 object-cover w-full h-full"
                 src="/about_1.jpg"
                 sizes="100vw"
                 priority
@@ -33,7 +33,7 @@ export default function About() {
             />
 
             <Image
-                className="bg-layer layer-2 object-cover"
+                className="bg-layer layer-2 object-cover w-full h-full"
                 loading="lazy"
                 src="/about_2.jpg"
                 sizes="100vw"
@@ -43,7 +43,7 @@ export default function About() {
             />
 
             <Image
-                className="bg-layer layer-3 object-cover"
+                className="bg-layer layer-3 object-cover w-full h-full"
                 loading="lazy"
                 src="/about_3.jpg"
                 sizes="100vw"
@@ -53,7 +53,7 @@ export default function About() {
             />
 
             <Image
-                className="bg-layer layer-4 object-cover"
+                className="bg-layer layer-4 object-cover w-full h-full"
                 loading="lazy"
                 src="/about_4.jpg"
                 sizes="100vw"
