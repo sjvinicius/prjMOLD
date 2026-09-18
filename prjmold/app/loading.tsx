@@ -21,7 +21,6 @@ export default function Loading() {
                         alt="Logo símbolo da MOL·D"
                         width={80}
                         height={80}
-                        priority
                     />
                 </div>
 
