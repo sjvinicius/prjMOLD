@@ -90,7 +90,7 @@ export default function RootLayout({
 
             <Image
               src="/fundo_hero.jpg"
-              alt=""
+              alt="Imagem background da MOL·D mostrando uma luminária em um ambiente acolhedor"
               width={1920}
               height={1280}
               sizes="100vw"

@@ -51,12 +51,10 @@ export default function ProductInfo({
                 Coleção Bio Luz
             </span>
 
-            <h2 className="mb-10 text-5xl font-semibold leading-none text-white">
-                Bio Luz{" "}
-                <span className="text-[#FFCD92]">
-                    {plant.name}
-                </span>
-            </h2>
+            <div className="mb-10 text-5xl font-semibold leading-none text-white">
+                <p>Bio Luz</p>
+                <h2 className="text-[#FFCD92]">{plant.name}</h2>
+            </div>
 
             {/* Planta */}
 

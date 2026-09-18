@@ -47,6 +47,7 @@ export function createPageMetadata(
             title,
             description,
             images: [imageUrl],
+            site: "@mold"
         },
     };
 }

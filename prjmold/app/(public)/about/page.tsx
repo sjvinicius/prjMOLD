@@ -34,7 +34,7 @@ export default function About() {
 
             <Image
                 className="bg-layer layer-2 object-cover"
-                loading="eager"
+                loading="lazy"
                 src="/about_2.jpg"
                 sizes="100vw"
                 width={1920}
@@ -44,7 +44,7 @@ export default function About() {
 
             <Image
                 className="bg-layer layer-3 object-cover"
-                loading="eager"
+                loading="lazy"
                 src="/about_3.jpg"
                 sizes="100vw"
                 width={1920}
@@ -54,7 +54,7 @@ export default function About() {
 
             <Image
                 className="bg-layer layer-4 object-cover"
-                loading="eager"
+                loading="lazy"
                 src="/about_4.jpg"
                 sizes="100vw"
                 width={1920}
